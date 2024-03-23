@@ -1,4 +1,5 @@
-﻿using FootballLeague.DA;
+﻿using FootballLeague.BL;
+using FootballLeague.DA;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,25 @@ namespace WindowFormViews
 {
     public partial class LoginForm : Form
     {
-        public LoginForm()
+        private UserService userService;
+        private LeagueService leagueService;
+        private CountryService countryService;
+        private ClubService clubService;
+        private StadiumService stadiumService;
+        private FeedbackService feedbackService;
+        private MatchService matchService;
+        private ApplicationService applicationService;
+        public LoginForm(UserService userService, LeagueService leagueService, CountryService countryService, ClubService clubService, StadiumService stadiumService, FeedbackService feedbackService, MatchService matchService, ApplicationService applicationService)
         {
             InitializeComponent();
+            this.userService = userService;
+            this.leagueService = leagueService;
+            this.countryService = countryService;
+            this.clubService = clubService;
+            this.stadiumService = stadiumService;
+            this.feedbackService = feedbackService;
+            this.matchService = matchService;
+            this.applicationService = applicationService;
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -35,7 +52,7 @@ namespace WindowFormViews
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            Registration r = new Registration();
+            Registration r = new Registration(userService);
             r.ShowDialog();
         }
 
@@ -43,21 +60,15 @@ namespace WindowFormViews
         {
             string username = textboxUsername.Text;
             string password = textboxPassword.Text;
-            if (Login(username, password))
+            if (userService.Login(username, password))
             {
-                MainForm m = new MainForm();
-                this.Hide();
+                MainForm m = new MainForm(username, userService, leagueService, countryService, clubService, stadiumService);
                 m.ShowDialog();
-                this.Show();
             }
             else
             {
                 MessageBox.Show("Invalid username or password");
             }
-        }
-        bool Login(string username, string password)
-        {
-            return UserRepository.Instance.Login(username, password);
         }
         private void btnShow_Click(object sender, EventArgs e)
         {

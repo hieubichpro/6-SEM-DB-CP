@@ -15,7 +15,6 @@ C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\Football
 C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.csproj.CoreCompileInputs.cache
 C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.exe
 C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.pdb
-C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\bin\Debug\Guna.UI2.dll
 C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.csproj.CopyComplete
 C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\WindowFormViews.LoginForm.resources
 C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\WindowFormViews.MainForm.resources
@@ -54,3 +53,12 @@ C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\bin\Debug\System.T
 C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\bin\Debug\System.Threading.Channels.xml
 C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\bin\Debug\System.ValueTuple.xml
+C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.ChangePasswordForm.resources
+C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.InforUserForm.resources
+C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.NewLeague.resources
+C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.NewClub.resources
+C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.ClubForm.resources
+C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.FootballerForm.resources
+C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.LeagueForm.resources
+C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.CoachForm.resources
+C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.StadiumForm.resources

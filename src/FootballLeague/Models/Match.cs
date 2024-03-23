@@ -10,7 +10,7 @@
         private int idGuessTeam;
         private int idStadium;
 
-        Match(int id, int goalHomeTeam, int goalGuessTeam, int idLeague, int idHomeTeam, int idGuessTeam, int idStadium)
+        public Match(int id, int goalHomeTeam, int goalGuessTeam, int idLeague, int idHomeTeam, int idGuessTeam, int idStadium)
         {
             this.id = id;
             this.goalHomeTeam = goalHomeTeam;

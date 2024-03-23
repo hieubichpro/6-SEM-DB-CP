@@ -8,7 +8,7 @@
         private int idUser;
         private int idLeague;
 
-        Feedback(int id, string comment, int grade, int id_user, int id_league)
+        public Feedback(int id, string comment, int grade, int id_user, int id_league)
         {
             this.id = id;
             this.comment = comment;

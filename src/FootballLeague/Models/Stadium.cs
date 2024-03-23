@@ -6,7 +6,7 @@
         private string name;
         private int capacity;
         private int idCountry;
-        Stadium(int id, string name, int capacity, int idCountry)
+        public Stadium(int id, string name, int capacity, int idCountry)
         {
             this.id = id;
             this.name = name;

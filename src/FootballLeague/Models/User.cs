@@ -9,8 +9,9 @@
         private string firstName;
         private string lastName;
         private int age;
+        private int idClub;
 
-        User(int id, string login, string password, string role, string firstName, string lastName, int age)
+        public User(int id, string login, string password, string role, string firstName, string lastName, int age, int idClub = -1)
         {
             this.id = id;
             this.login = login;
@@ -19,6 +20,7 @@
             this.firstName = firstName;
             this.lastName = lastName;
             this.age = age;
+            this.idClub = idClub;
         }
 
         public int Id { get => id; set => id = value; }
@@ -28,5 +30,6 @@
         public string FirstName { get => firstName; set => firstName = value; }
         public string LastName { get => lastName; set => lastName = value; }
         public int Age { get => age; set => age = value; }
+        public int IdClub { get => idClub; set => idClub = value; }
     }
 }
