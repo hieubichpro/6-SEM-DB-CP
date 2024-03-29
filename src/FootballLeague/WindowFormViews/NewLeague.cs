@@ -58,6 +58,9 @@ namespace FootballLeague.WindowFormViews
             User currUser = userService.getUserByUsername(username);
             Country currCountry = countryService.getCountryByName(cbbCountry.SelectedItem.ToString());
             leagueService.insertLeague(textBoxName.Text, textBoxRating.Text, currUser.Id, currCountry.Id);
+
+            dynamic allLeagueAfterInsert = leagueService.getAllLeagueInfo();
+            LeagueForm.dgvLeague.DataSource = allLeagueAfterInsert;
             MessageBox.Show("League have been created successfully");
             this.Close();
         }

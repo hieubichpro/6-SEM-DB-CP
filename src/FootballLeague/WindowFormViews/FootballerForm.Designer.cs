@@ -34,13 +34,10 @@ namespace FootballLeague.WindowFormViews
             this.panel1 = new System.Windows.Forms.Panel();
             this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvFootballer = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.dgvRequest = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFootballer)).BeginInit();
-            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRequest)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -94,79 +91,36 @@ namespace FootballLeague.WindowFormViews
             this.dgvFootballer.Location = new System.Drawing.Point(0, 121);
             this.dgvFootballer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvFootballer.Name = "dgvFootballer";
-            this.dgvFootballer.Size = new System.Drawing.Size(835, 346);
+            this.dgvFootballer.Size = new System.Drawing.Size(835, 197);
             this.dgvFootballer.TabIndex = 14;
+            this.dgvFootballer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFootballer_CellDoubleClick);
             // 
-            // button4
+            // dgvRequest
             // 
-            this.button4.BackColor = System.Drawing.Color.Red;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button4.Location = new System.Drawing.Point(357, 10);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 34);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "DELETE";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.DarkGreen;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button5.Location = new System.Drawing.Point(459, 10);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(185, 34);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "SHOW APPLICATIONS";
-            this.button5.UseVisualStyleBackColor = false;
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.SystemColors.Highlight;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button6.Location = new System.Drawing.Point(262, 10);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 34);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "CREATE";
-            this.button6.UseVisualStyleBackColor = false;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.button6);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 516);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(848, 55);
-            this.panel2.TabIndex = 17;
+            this.dgvRequest.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvRequest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRequest.Location = new System.Drawing.Point(0, 339);
+            this.dgvRequest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvRequest.Name = "dgvRequest";
+            this.dgvRequest.Size = new System.Drawing.Size(835, 196);
+            this.dgvRequest.TabIndex = 17;
             // 
             // FootballerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 571);
+            this.Controls.Add(this.dgvRequest);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.guna2TextBox1);
             this.Controls.Add(this.dgvFootballer);
-            this.Controls.Add(this.panel2);
             this.Name = "FootballerForm";
             this.Text = "Footballer";
             this.Load += new System.EventHandler(this.FootballerForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFootballer)).EndInit();
-            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRequest)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -177,9 +131,6 @@ namespace FootballLeague.WindowFormViews
         private System.Windows.Forms.Panel panel1;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
         private System.Windows.Forms.DataGridView dgvFootballer;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridView dgvRequest;
     }
 }

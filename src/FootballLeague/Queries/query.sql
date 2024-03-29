@@ -76,8 +76,8 @@ create table if not exists Requests
 (
 	id serial not null primary key,
 	created_time timestamp default now(),
-	id_league int not null,
-	id_club int not null,
+	id_league int default -1,
+	id_club int default -1,
 	id_user int not null,
 	
 	foreign key (id_league) references Leagues(id),
@@ -106,3 +106,16 @@ create table if not exists LeagueClub
 	foreign key (id_league) references Leagues(id),
 	foreign key (id_club) references Clubs(id)
 );
+
+select * from users
+
+select * from requests
+
+select r.id, r.created_time, c.name as Club, u.firstname || ' ' || u.lastname as Coach
+from clubs c join requests r on r.id_club = c.id
+join users u on r.id_user = u.id
+where r.id_league = 1;
+
+select * from leagueclub
+
+select * from users

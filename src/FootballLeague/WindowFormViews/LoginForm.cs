@@ -21,8 +21,8 @@ namespace WindowFormViews
         private StadiumService stadiumService;
         private FeedbackService feedbackService;
         private MatchService matchService;
-        private ApplicationService applicationService;
-        public LoginForm(UserService userService, LeagueService leagueService, CountryService countryService, ClubService clubService, StadiumService stadiumService, FeedbackService feedbackService, MatchService matchService, ApplicationService applicationService)
+        private RequestService requestService;
+        public LoginForm(UserService userService, LeagueService leagueService, CountryService countryService, ClubService clubService, StadiumService stadiumService, FeedbackService feedbackService, MatchService matchService, RequestService requestService)
         {
             InitializeComponent();
             this.userService = userService;
@@ -32,7 +32,7 @@ namespace WindowFormViews
             this.stadiumService = stadiumService;
             this.feedbackService = feedbackService;
             this.matchService = matchService;
-            this.applicationService = applicationService;
+            this.requestService = requestService;
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace WindowFormViews
             string password = textboxPassword.Text;
             if (userService.Login(username, password))
             {
-                MainForm m = new MainForm(username, userService, leagueService, countryService, clubService, stadiumService);
+                MainForm m = new MainForm(username, userService, leagueService, countryService, clubService, stadiumService, requestService);
                 m.ShowDialog();
             }
             else
@@ -91,6 +91,12 @@ namespace WindowFormViews
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnGuest_Click(object sender, EventArgs e)
+        {
+            MainForm m = new MainForm("Guest", userService, leagueService, countryService, clubService, stadiumService, requestService);
+            m.ShowDialog();
         }
     }
 }

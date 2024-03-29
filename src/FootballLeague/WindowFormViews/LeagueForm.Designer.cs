@@ -38,16 +38,16 @@ namespace FootballLeague.WindowFormViews
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnRequest = new System.Windows.Forms.Button();
             this.btnShow = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dgvLeague = new System.Windows.Forms.DataGridView();
+            dgvLeague = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLeague)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(dgvLeague)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -86,10 +86,10 @@ namespace FootballLeague.WindowFormViews
             // dgvTable
             // 
             this.dgvTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTable.Location = new System.Drawing.Point(220, 121);
+            this.dgvTable.Location = new System.Drawing.Point(262, 121);
             this.dgvTable.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvTable.Name = "dgvTable";
-            this.dgvTable.Size = new System.Drawing.Size(628, 488);
+            this.dgvTable.Size = new System.Drawing.Size(586, 488);
             this.dgvTable.TabIndex = 6;
             // 
             // button3
@@ -148,7 +148,7 @@ namespace FootballLeague.WindowFormViews
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Controls.Add(this.btnDelete);
+            this.panel2.Controls.Add(this.btnRequest);
             this.panel2.Controls.Add(this.btnShow);
             this.panel2.Controls.Add(this.btnCreate);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -157,19 +157,20 @@ namespace FootballLeague.WindowFormViews
             this.panel2.Size = new System.Drawing.Size(846, 56);
             this.panel2.TabIndex = 12;
             // 
-            // btnDelete
+            // btnRequest
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.Red;
-            this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDelete.Location = new System.Drawing.Point(357, 10);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 34);
-            this.btnDelete.TabIndex = 5;
-            this.btnDelete.Text = "DELETE";
-            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnRequest.BackColor = System.Drawing.Color.Fuchsia;
+            this.btnRequest.FlatAppearance.BorderSize = 0;
+            this.btnRequest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRequest.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRequest.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnRequest.Location = new System.Drawing.Point(357, 10);
+            this.btnRequest.Name = "btnRequest";
+            this.btnRequest.Size = new System.Drawing.Size(83, 34);
+            this.btnRequest.TabIndex = 5;
+            this.btnRequest.Text = "REQUEST";
+            this.btnRequest.UseVisualStyleBackColor = false;
+            this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
             // 
             // btnShow
             // 
@@ -184,6 +185,7 @@ namespace FootballLeague.WindowFormViews
             this.btnShow.TabIndex = 4;
             this.btnShow.Text = "SHOW APPLICATIONS";
             this.btnShow.UseVisualStyleBackColor = false;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // btnCreate
             // 
@@ -202,22 +204,23 @@ namespace FootballLeague.WindowFormViews
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dgvLeague);
+            this.panel3.Controls.Add(dgvLeague);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 76);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(220, 533);
+            this.panel3.Size = new System.Drawing.Size(264, 533);
             this.panel3.TabIndex = 13;
             // 
             // dgvLeague
             // 
-            this.dgvLeague.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLeague.Location = new System.Drawing.Point(0, 0);
-            this.dgvLeague.Name = "dgvLeague";
-            this.dgvLeague.Size = new System.Drawing.Size(233, 545);
-            this.dgvLeague.TabIndex = 0;
+            dgvLeague.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dgvLeague.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvLeague.Location = new System.Drawing.Point(0, 0);
+            dgvLeague.Name = "dgvLeague";
+            dgvLeague.Size = new System.Drawing.Size(264, 533);
+            dgvLeague.TabIndex = 0;
             // 
-            // League
+            // LeagueForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -230,14 +233,15 @@ namespace FootballLeague.WindowFormViews
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
-            this.Name = "League";
+            this.Name = "LeagueForm";
             this.Text = "League";
+            this.Load += new System.EventHandler(this.LeagueForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTable)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLeague)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(dgvLeague)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -252,10 +256,10 @@ namespace FootballLeague.WindowFormViews
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnRequest;
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView dgvLeague;
+        public static System.Windows.Forms.DataGridView dgvLeague;
     }
 }

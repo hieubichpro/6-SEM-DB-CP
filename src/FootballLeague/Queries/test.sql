@@ -115,3 +115,62 @@ from stadiums s join countries c on s.id_country = c.id
 select * from countries
 
 select * from requests
+
+select * from leagues
+
+alter table leagues add id_country int
+
+select l.id, l.name as League, l.rating, u.firstname || ' ' || u.lastname as Creator, c.name as Country
+from leagues l join users u on l.id_user = u.id
+join countries c on l.id_country = c.id
+
+select * from requests
+
+select * from users
+
+select * from clubs
+
+select * from leagueclub
+
+
+create table employee
+(
+	id serial not null primary key,
+	ida int not null,
+	idb int default -1,
+	idc int not null
+)
+
+insert into employee(ida, idc) values (2, 3);
+
+select * from employee
+
+drop table employee
+
+select r.id, r.created_time, u.firstname || ' ' || u.lastname as Footballer
+from (select * from clubs where id = 3) c join requests r on r.id_club = c.id
+join users u on r.id_user = u.id
+where id_league = 1;
+
+
+select r.id, r.created_time, u.firstname || ' ' || u.lastname as Footballer
+from clubs c join requests r on r.id_club = c.id
+join users u on r.id_user = u.id
+where id_league = 1 and c.id = 3
+
+
+select * from requests
+select now()
+update requests set created_time = now()
+where id = 2
+
+
+insert into requests(id_league, id_club, id_user) values (1, 1, 1);
+
+delete from requests where id = 5
+
+select * from users
+
+select u.id, u.firstname as FirstName, u.lastname as LastName, u.age as Age
+from clubs c join users u on u.id_club = c.id
+where u.role = 'Footballer'

@@ -14,10 +14,12 @@ namespace FootballLeague.WindowFormViews
     public partial class FootballerForm : Form
     {
         private UserService userService;
-        public FootballerForm(UserService userService)
+        private RequestService requestService;
+        public FootballerForm(UserService userService, RequestService requestService)
         {
             InitializeComponent();
             this.userService = userService;
+            this.requestService = requestService;
         }
 
         private void FootballerForm_Load(object sender, EventArgs e)
@@ -29,6 +31,13 @@ namespace FootballLeague.WindowFormViews
         {
             dynamic allFootballer = userService.getAllUserAndInfoByRole("Footballer");
             dgvFootballer.DataSource = allFootballer;
+        }
+
+        private void dgvFootballer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int idFootballer = (int)dgvFootballer.CurrentRow.Cells[0].Value;
+            dynamic allRequestOfFootballer = requestService.getAllRequestOfFootballer(idFootballer);
+            dgvRequest.DataSource = allRequestOfFootballer;
         }
     }
 }

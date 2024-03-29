@@ -102,7 +102,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\ApplicationService.cs" />
+    <Compile Include="BL\RequestService.cs" />
     <Compile Include="BL\ClubService.cs" />
     <Compile Include="BL\CountryService.cs" />
     <Compile Include="BL\FeedbackService.cs" />
@@ -110,7 +110,7 @@
     <Compile Include="BL\MatchService.cs" />
     <Compile Include="BL\StadiumService.cs" />
     <Compile Include="BL\UserService.cs" />
-    <Compile Include="DA\ApplicationRepository.cs" />
+    <Compile Include="DA\RequestRepository.cs" />
     <Compile Include="DA\ClubRepository.cs" />
     <Compile Include="DA\Connection.cs" />
     <Compile Include="DA\CountryRepository.cs" />
@@ -186,6 +186,18 @@
     <Compile Include="WindowFormViews\RegistrationForm.Designer.cs">
       <DependentUpon>RegistrationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowFormViews\RequestOfLeague.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowFormViews\RequestOfLeague.Designer.cs">
+      <DependentUpon>RequestOfLeague.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFormViews\RequestOfClub.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowFormViews\RequestOfClub.Designer.cs">
+      <DependentUpon>RequestOfClub.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowFormViews\SplashForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +261,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WindowFormViews\RegistrationForm.resx">
       <DependentUpon>RegistrationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowFormViews\RequestOfLeague.resx">
+      <DependentUpon>RequestOfLeague.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowFormViews\RequestOfClub.resx">
+      <DependentUpon>RequestOfClub.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WindowFormViews\SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>

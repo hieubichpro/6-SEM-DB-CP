@@ -45,6 +45,7 @@ namespace WindowFormViews
             this.btnExit = new Guna.UI2.WinForms.Guna2Button();
             this.btnHide = new System.Windows.Forms.Button();
             this.btnShow = new System.Windows.Forms.Button();
+            this.btnGuest = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -196,10 +197,10 @@ namespace WindowFormViews
             this.btnLogin.FlatAppearance.BorderSize = 0;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnLogin.Location = new System.Drawing.Point(381, 319);
+            this.btnLogin.Location = new System.Drawing.Point(418, 319);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(0);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(96, 27);
+            this.btnLogin.Size = new System.Drawing.Size(82, 27);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Sign in";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -211,10 +212,10 @@ namespace WindowFormViews
             this.btnRegister.FlatAppearance.BorderSize = 0;
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegister.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btnRegister.Location = new System.Drawing.Point(496, 319);
+            this.btnRegister.Location = new System.Drawing.Point(510, 319);
             this.btnRegister.Margin = new System.Windows.Forms.Padding(0);
             this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(96, 27);
+            this.btnRegister.Size = new System.Drawing.Size(82, 27);
             this.btnRegister.TabIndex = 3;
             this.btnRegister.Text = "Sign up";
             this.btnRegister.UseVisualStyleBackColor = false;
@@ -256,11 +257,27 @@ namespace WindowFormViews
             this.btnShow.UseVisualStyleBackColor = true;
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
+            // btnGuest
+            // 
+            this.btnGuest.BackColor = System.Drawing.Color.DarkOrange;
+            this.btnGuest.FlatAppearance.BorderSize = 0;
+            this.btnGuest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuest.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btnGuest.Location = new System.Drawing.Point(322, 319);
+            this.btnGuest.Margin = new System.Windows.Forms.Padding(0);
+            this.btnGuest.Name = "btnGuest";
+            this.btnGuest.Size = new System.Drawing.Size(85, 27);
+            this.btnGuest.TabIndex = 8;
+            this.btnGuest.Text = "Guest";
+            this.btnGuest.UseVisualStyleBackColor = false;
+            this.btnGuest.Click += new System.EventHandler(this.btnGuest_Click);
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.btnLogin;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(620, 450);
+            this.Controls.Add(this.btnGuest);
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.btnHide);
             this.Controls.Add(this.btnExit);
@@ -301,5 +318,6 @@ namespace WindowFormViews
         private Guna.UI2.WinForms.Guna2Button btnExit;
         private System.Windows.Forms.Button btnHide;
         private System.Windows.Forms.Button btnShow;
+        private System.Windows.Forms.Button btnGuest;
     }
 }

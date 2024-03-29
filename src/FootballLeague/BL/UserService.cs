@@ -57,5 +57,10 @@ namespace FootballLeague.BL
         {
             return userRepo.getAllUserAndInfoByRole(role);
         }
+
+        internal DataTable getAllFootballerInClub(int idClub)
+        {
+            return userRepo.getAllFootballerInClub(idClub);
+        }
     }
 }

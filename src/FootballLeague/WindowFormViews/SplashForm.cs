@@ -20,8 +20,8 @@ namespace WindowFormViews
         private StadiumService stadiumService;
         private FeedbackService feedbackService;
         private MatchService matchService;
-        private ApplicationService applicationService;
-        public SplashForm(UserService userService, LeagueService leagueService, CountryService countryService, ClubService clubService, StadiumService stadiumService, FeedbackService feedbackService, MatchService matchService, ApplicationService applicationService)
+        private RequestService requestService;
+        public SplashForm(UserService userService, LeagueService leagueService, CountryService countryService, ClubService clubService, StadiumService stadiumService, FeedbackService feedbackService, MatchService matchService, RequestService requestService)
         {
             InitializeComponent();
             this.userService = userService;
@@ -31,20 +31,20 @@ namespace WindowFormViews
             this.stadiumService = stadiumService;
             this.feedbackService = feedbackService;
             this.matchService = matchService;
-            this.applicationService = applicationService;
+            this.requestService = requestService;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (processBar.Value < 100)
             {
-                processBar.Value += 20;
+                processBar.Value += 50;
                 percent.Text = processBar.Value.ToString() + "%";
             }
             else
             {
                 timer1.Stop();
-                LoginForm n = new LoginForm(userService, leagueService, countryService, clubService, stadiumService, feedbackService, matchService, applicationService);
+                LoginForm n = new LoginForm(userService, leagueService, countryService, clubService, stadiumService, feedbackService, matchService, requestService);
                 n.ShowDialog();
                 this.Close();
             }

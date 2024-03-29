@@ -17,12 +17,14 @@ namespace FootballLeague.WindowFormViews
         private string username;
         private StadiumService stadiumService;
         private CountryService countryService;
-        public StadiumForm(string username, StadiumService stadiumService, CountryService countryService)
+        private UserService userService;
+        public StadiumForm(string username, StadiumService stadiumService, CountryService countryService, UserService userService)
         {
             InitializeComponent();
-            this.Username = username;
-            this.StadiumService = stadiumService;
-            this.CountryService = countryService;
+            this.username = username;
+            this.stadiumService = stadiumService;
+            this.countryService = countryService;
+            this.userService = userService;
         }
 
         public string Username { get => username; set => username = value; }
@@ -33,6 +35,19 @@ namespace FootballLeague.WindowFormViews
         {
             showAllStadium();
             FillCountryCbb();
+            string role = "";
+            if (username != "Guest")
+            {
+                role = userService.getUserByUsername(username).Role;
+            }
+            if (role == "Admin")
+            {
+                EnabledPanelContents(mypanel, true);
+            }
+            else
+            {
+                EnabledPanelContents(mypanel, false);
+            }
         }
 
         private void showAllStadium()
@@ -88,6 +103,14 @@ namespace FootballLeague.WindowFormViews
             stadiumService.deleteStadiumById(id);
 
             showAllStadium();
+        }
+
+        private void EnabledPanelContents(Panel panel, bool enabled)
+        {
+            foreach (Control ctrl in panel.Controls)
+            {
+                ctrl.Enabled = enabled;
+            }
         }
     }
 }

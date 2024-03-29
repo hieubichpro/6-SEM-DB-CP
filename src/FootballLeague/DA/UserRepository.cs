@@ -49,6 +49,19 @@ namespace FootballLeague.DA
             command.ExecuteNonQuery();
         }
 
+        internal DataTable getAllFootballerInClub(int idClub)
+        {
+            string query = "select u.id, u.firstname as FirstName, u.lastname as LastName, u.age as Age"
+                           + " from clubs c join users u on u.id_club = c.id"
+                           + " where u.role = 'Footballer' and c.id = " + idClub + ";";
+            NpgsqlCommand command = new NpgsqlCommand(query, this.connector);
+            NpgsqlDataReader reader = command.ExecuteReader();
+            DataTable dttable = new DataTable();
+            dttable.Load(reader);
+            reader.Close();
+            return dttable;
+        }
+
         internal User getUserByUsername(string username)
         {
             string query = "select * from users where login = '" + username + "';";
@@ -86,7 +99,7 @@ namespace FootballLeague.DA
 
         public DataTable getAllUserAndInfoByRole(string role)
         {
-            string query = "select u.firstname || ' ' || u.lastname as Fullname_Footballer, u.age, c.name as Name_Club"
+            string query = "select u.id, u.firstname || ' ' || u.lastname as Fullname_Footballer, u.age, c.name as Name_Club"
                          + " from users u left join clubs c"
                          + " on u.id_club = c.id"
                          + " where role = '" + role + "';";

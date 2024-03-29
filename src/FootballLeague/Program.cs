@@ -29,7 +29,7 @@ namespace FootballLeague
             StadiumRepository stadiumRepo = new StadiumRepository(connectionArgs);
             FeedbackRepository feedbackRepo = new FeedbackRepository(connectionArgs);
             MatchRepository matchRepo = new MatchRepository(connectionArgs);
-            ApplicationRepository applicationRepo = new ApplicationRepository(connectionArgs);
+            RequestRepository requestRepo = new RequestRepository(connectionArgs);
 
             UserService userService = new UserService(userRepo);
             LeagueService leagueService = new LeagueService(leagueRepo);
@@ -38,10 +38,10 @@ namespace FootballLeague
             StadiumService stadiumService = new StadiumService(stadiumRepo);
             FeedbackService feedbackService = new FeedbackService(feedbackRepo);
             MatchService matchService = new MatchService(matchRepo);
-            ApplicationService applicationService = new ApplicationService(applicationRepo);
+            RequestService requestService = new RequestService(requestRepo);
 
 
-            Application.Run(new SplashForm(userService, leagueService, countryService, clubService, stadiumService, feedbackService, matchService, applicationService));
+            Application.Run(new SplashForm(userService, leagueService, countryService, clubService, stadiumService, feedbackService, matchService, requestService));
         }
     }
 }

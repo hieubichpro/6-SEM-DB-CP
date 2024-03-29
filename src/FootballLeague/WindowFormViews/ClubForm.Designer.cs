@@ -33,14 +33,14 @@ namespace FootballLeague.WindowFormViews
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
-            this.dgvFootballerinClub = new System.Windows.Forms.DataGridView();
+            dgvFootballerinClub = new System.Windows.Forms.DataGridView();
             this.btnShow = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnRequest = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             dgvClub = new System.Windows.Forms.DataGridView();
-            this.btnRequest = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFootballerinClub)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(dgvFootballerinClub)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(dgvClub)).BeginInit();
             this.SuspendLayout();
@@ -91,12 +91,13 @@ namespace FootballLeague.WindowFormViews
             // 
             // dgvFootballerinClub
             // 
-            this.dgvFootballerinClub.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFootballerinClub.Location = new System.Drawing.Point(326, 107);
-            this.dgvFootballerinClub.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvFootballerinClub.Name = "dgvFootballerinClub";
-            this.dgvFootballerinClub.Size = new System.Drawing.Size(497, 361);
-            this.dgvFootballerinClub.TabIndex = 5;
+            dgvFootballerinClub.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dgvFootballerinClub.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvFootballerinClub.Location = new System.Drawing.Point(311, 107);
+            dgvFootballerinClub.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dgvFootballerinClub.Name = "dgvFootballerinClub";
+            dgvFootballerinClub.Size = new System.Drawing.Size(512, 361);
+            dgvFootballerinClub.TabIndex = 5;
             // 
             // btnShow
             // 
@@ -111,6 +112,7 @@ namespace FootballLeague.WindowFormViews
             this.btnShow.TabIndex = 4;
             this.btnShow.Text = "SHOW APPLICATIONS";
             this.btnShow.UseVisualStyleBackColor = false;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // panel2
             // 
@@ -123,6 +125,21 @@ namespace FootballLeague.WindowFormViews
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(823, 56);
             this.panel2.TabIndex = 8;
+            // 
+            // btnRequest
+            // 
+            this.btnRequest.BackColor = System.Drawing.Color.DeepPink;
+            this.btnRequest.FlatAppearance.BorderSize = 0;
+            this.btnRequest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRequest.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRequest.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnRequest.Location = new System.Drawing.Point(311, 10);
+            this.btnRequest.Name = "btnRequest";
+            this.btnRequest.Size = new System.Drawing.Size(89, 34);
+            this.btnRequest.TabIndex = 7;
+            this.btnRequest.Text = "REQUEST";
+            this.btnRequest.UseVisualStyleBackColor = false;
+            this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
             // 
             // btnCreate
             // 
@@ -151,21 +168,6 @@ namespace FootballLeague.WindowFormViews
             dgvClub.TabIndex = 9;
             dgvClub.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(dgvClub_CellDoubleClick);
             // 
-            // btnRequest
-            // 
-            this.btnRequest.BackColor = System.Drawing.Color.DeepPink;
-            this.btnRequest.FlatAppearance.BorderSize = 0;
-            this.btnRequest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRequest.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRequest.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnRequest.Location = new System.Drawing.Point(311, 10);
-            this.btnRequest.Name = "btnRequest";
-            this.btnRequest.Size = new System.Drawing.Size(89, 34);
-            this.btnRequest.TabIndex = 7;
-            this.btnRequest.Text = "REQUEST";
-            this.btnRequest.UseVisualStyleBackColor = false;
-            this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
-            // 
             // ClubForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,14 +176,14 @@ namespace FootballLeague.WindowFormViews
             this.Controls.Add(dgvClub);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.guna2TextBox1);
-            this.Controls.Add(this.dgvFootballerinClub);
+            this.Controls.Add(dgvFootballerinClub);
             this.Controls.Add(this.panel2);
             this.Name = "ClubForm";
             this.Text = "Club";
             this.Load += new System.EventHandler(this.ClubForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFootballerinClub)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(dgvFootballerinClub)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(dgvClub)).EndInit();
             this.ResumeLayout(false);
@@ -193,7 +195,7 @@ namespace FootballLeague.WindowFormViews
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
-        private System.Windows.Forms.DataGridView dgvFootballerinClub;
+        public static System.Windows.Forms.DataGridView dgvFootballerinClub;
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnCreate;

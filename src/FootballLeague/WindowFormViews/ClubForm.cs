@@ -17,13 +17,15 @@ namespace FootballLeague.WindowFormViews
         private UserService userService;
         private ClubService clubService;
         private CountryService countryService;
-        public ClubForm(string username, UserService userService, ClubService clubService, CountryService countryService)
+        private RequestService requestService;
+        public ClubForm(string username, UserService userService, ClubService clubService, CountryService countryService, RequestService requestService)
         {
             InitializeComponent();
             this.username = username;
             this.userService = userService;
             this.clubService = clubService;
             this.countryService = countryService;
+            this.requestService = requestService;
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -55,13 +57,24 @@ namespace FootballLeague.WindowFormViews
 
         private void dgvClub_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //TODO
-            //Fill all footballers, whom plays in this club
+            int idClub = (int)dgvClub.CurrentRow.Cells[0].Value;
+            dynamic allFootballerInClub = userService.getAllFootballerInClub(idClub);
+            dgvFootballerinClub.DataSource = allFootballerInClub;
         }
 
         private void btnRequest_Click(object sender, EventArgs e)
         {
+            int id_club = (int)dgvClub.CurrentRow.Cells[0].Value;
+            int id_user = userService.getUserByUsername(username).Id;
+            requestService.insertRequestToClub(id_club, id_user);
 
+            MessageBox.Show("Request to club successfully");
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            RequestOfClub roc = new RequestOfClub(username, userService, requestService, clubService);
+            roc.ShowDialog();
         }
     }
 }

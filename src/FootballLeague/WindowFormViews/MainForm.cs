@@ -1,6 +1,7 @@
 ﻿using FootballLeague.BL;
 using FootballLeague.DA;
 using FootballLeague.WindowFormViews;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,9 @@ namespace WindowFormViews
         private CountryService countryService;
         private ClubService clubService;
         private StadiumService stadiumService;
-        public MainForm(string username, UserService userService, LeagueService leagueService, CountryService countryService, ClubService clubService, StadiumService stadiumService)
+        private RequestService requestService;
+
+        public MainForm(string username, UserService userService, LeagueService leagueService, CountryService countryService, ClubService clubService, StadiumService stadiumService, RequestService requestService)
         {
             InitializeComponent();
             FillNameAndRole();
@@ -31,6 +34,7 @@ namespace WindowFormViews
             this.countryService = countryService;
             this.clubService = clubService;
             this.stadiumService = stadiumService;
+            this.requestService = requestService;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -40,7 +44,19 @@ namespace WindowFormViews
 
         private void MainForm_Load_1(object sender, EventArgs e)
         {
-
+            if (username != "Guest")
+            {
+                User currUser = userService.getUserByUsername(username);
+                labelName.Text = currUser.FirstName + " " + currUser.LastName;
+                LabelRolee.Text = currUser.Role;
+            }
+            else
+            {
+                labelName.Text = username;
+                LabelRolee.Text = username;
+                userToolStripMenuItem.Visible = false;
+                aboutToolStripMenuItem.Visible = false;
+            }
         }
 
         private void dgvAccount_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -82,10 +98,13 @@ namespace WindowFormViews
 
         private void btnLeague_Click(object sender, EventArgs e)
         {
-            openChildForm(new LeagueForm(username, userService, leagueService, countryService));
+            openChildForm(new LeagueForm(username, userService, leagueService, countryService, requestService, clubService));
         }
 
         private Form activeForm = null;
+
+        public RequestService RequestService { get => requestService; set => requestService = value; }
+
         private void openChildForm(Form childForm)
         {
             if (activeForm != null)
@@ -102,12 +121,12 @@ namespace WindowFormViews
 
         private void btnFootballer_Click(object sender, EventArgs e)
         {
-            openChildForm(new FootballerForm(userService));
+            openChildForm(new FootballerForm(userService, requestService));
         }
 
         private void btnClub_Click(object sender, EventArgs e)
         {
-            openChildForm(new ClubForm(username, userService, clubService, countryService));
+            openChildForm(new ClubForm(username, userService, clubService, countryService, RequestService));
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
@@ -129,7 +148,13 @@ namespace WindowFormViews
 
         private void btnStadium_Click(object sender, EventArgs e)
         {
-            openChildForm(new StadiumForm(username, stadiumService, countryService));
+            openChildForm(new StadiumForm(username, stadiumService, countryService, userService));
+        }
+
+        private void infoToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            InforUserForm i = new InforUserForm(username, userService);
+            i.ShowDialog();
         }
     }
 }
