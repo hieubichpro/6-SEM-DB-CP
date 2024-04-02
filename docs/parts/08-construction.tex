@@ -1,0 +1,172 @@
+\section{Конструкторский раздел}
+
+\subsection{Проектирование базы данных}
+
+На основе выделенных ранее сущностей спроектированы следующие объекты базы данных:
+\begin{enumerate}
+	\item users --- таблица пользователей;
+	\item countries --- таблица стран;
+	\item stadiums --- таблица стадионов;
+	\item feedbacks --- таблица отзывов гостей;
+	\item requests --- таблица заявок пользователей;
+	\item leagues --- таблица турниров;
+	\item clubs --- таблица клубов;
+	\item matches --- таблица матча;
+\end{enumerate}
+
+На основе диаграммы сущность-связей, представленной на рисунке \ref{img:ERdiagram} определяются стуктуры столбцов, их типы и так же органичения.
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы пользователей}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & serial & PRIMARY KEY & Идентификатор \\
+			\hline
+			lastname & VARCHAR(32) & NOT NULL & Фамилия \\
+			\hline
+			firstname & VARCHAR(32) & NOT NULL & Имя\\
+			\hline
+			login & VARCHAR(64) & NOT NULL &  Логин \\
+			\hline
+			password & VARCHAR(64) & NOT NULL & Пароль \\
+			\hline
+			role & VARCHAR(64) & NOT NULL & Права доступа \\
+			\hline
+		\end{tabular}
+		\label{table:db:users}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы турнира}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & serial & PRIMARY KEY & Идентификатор \\
+			\hline
+			name & VARCHAR(32) & NOT NULL & Название турнира \\
+			\hline
+			rating & DOUBLE & NOT NULL & Рейтинг турнира\\
+			\hline
+			iduser & INT & NOT NULL &  ID пользователя \\
+			\hline
+			idcountry & INT & NOT NULL & ID страны \\
+			\hline
+		\end{tabular}
+		\label{table:db:league}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы команды}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & serial & PRIMARY KEY & Идентификатор \\
+			\hline
+			name & VARCHAR(32) & NOT NULL & Название команды \\
+			\hline
+			idcountry & INT & NOT NULL & ID страны \\
+			\hline
+		\end{tabular}
+		\label{table:db:club}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы стадиона}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & serial & PRIMARY KEY & Идентификатор \\
+			\hline
+			name & VARCHAR(32) & NOT NULL & Название стадиона \\
+			\hline
+			capacity & INT & NOT NULL & Количество мест \\
+			\hline
+			idcountry & INT & NOT NULL & ID страны \\
+			\hline
+		\end{tabular}
+		\label{table:db:stadium}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы отзыва}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & serial & PRIMARY KEY & Идентификатор \\
+			\hline
+			commment & VARCHAR(256) & NOT NULL & Коментарий \\
+			\hline
+			mark & INT & NOT NULL & Оценка \\
+			\hline
+			iduser & INT & NOT NULL & ID пользователя \\
+			\hline
+			idleague & INT & NOT NULL & ID турнира \\
+			\hline
+		\end{tabular}
+		\label{table:db:feedback}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы заявки}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & serial & PRIMARY KEY & Идентификатор \\
+			\hline
+			timecreated & DATE & NOT NULL & Время создания \\
+			\hline
+			iduser & INT & NOT NULL & ID пользователя \\
+			\hline
+			idleague & INT & NOT NULL & ID турнира \\
+			\hline
+			idclub & INT & NOT NULL & ID клуба \\
+			\hline
+		\end{tabular}
+		\label{table:db:request}
+	\end{center}
+\end{table}
+
+\begin{table}[H]
+	\begin{center}
+		\caption{Информация о столбцах таблицы матча}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Столбец & Тип данных & Ограничения & Значение \\
+			\hline
+			id & serial & PRIMARY KEY & Идентификатор \\
+			\hline
+			goalhome & DATE & NOT NULL & Голы домашней \\
+			\hline
+			goalguest & INT & NOT NULL & Голы гостевой \\
+			\hline
+			idleague & INT & NOT NULL & ID турнира \\
+			\hline
+			idhome & INT & NOT NULL & ID домащ клуба \\
+			\hline
+			idguest & INT & NOT NULL & ID гост клуба \\
+			\hline
+		\end{tabular}
+		\label{table:db:match}
+	\end{center}
+\end{table}
+
+\subsection*{Вывод}
+Были описаны требования к программному обеспечению, алгоритмы для построения сцены в пространстве изображения, изменения положения объекта в пространстве, построение камеры и ее проекций. Также описаны процедурные текстуры, проективные текстуры и алгоритм моделирования неровностей.

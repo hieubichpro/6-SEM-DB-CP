@@ -168,6 +168,18 @@
     <Compile Include="WindowFormViews\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowFormViews\MyClubForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowFormViews\MyClubForm.Designer.cs">
+      <DependentUpon>MyClubForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WindowFormViews\MyLeagueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowFormViews\MyLeagueForm.Designer.cs">
+      <DependentUpon>MyLeagueForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowFormViews\NewClub.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +264,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WindowFormViews\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowFormViews\MyClubForm.resx">
+      <DependentUpon>MyClubForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowFormViews\MyLeagueForm.resx">
+      <DependentUpon>MyLeagueForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WindowFormViews\NewClub.resx">
       <DependentUpon>NewClub.cs</DependentUpon>

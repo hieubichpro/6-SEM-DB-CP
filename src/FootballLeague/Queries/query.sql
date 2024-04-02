@@ -119,3 +119,7 @@ where r.id_league = 1;
 select * from leagueclub
 
 select * from users
+
+select r.id, r.created_time, c.name
+from requests r join clubs c on r.id_club = c.id
+where id_user = 

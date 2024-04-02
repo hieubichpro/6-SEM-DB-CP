@@ -58,6 +58,8 @@ namespace WindowFormViews
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
+            this.btnMyLeague = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -90,14 +92,14 @@ namespace WindowFormViews
             // infoToolStripMenuItem
             // 
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click_1);
             // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
@@ -126,9 +128,9 @@ namespace WindowFormViews
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 66);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 89);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1363, 847);
+            this.pictureBox1.Size = new System.Drawing.Size(1363, 824);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
@@ -293,6 +295,8 @@ namespace WindowFormViews
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnMyLeague);
             this.panel1.Controls.Add(this.labelDate);
             this.panel1.Controls.Add(this.btnLogout);
             this.panel1.Controls.Add(this.labelTime);
@@ -304,7 +308,7 @@ namespace WindowFormViews
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1363, 70);
+            this.panel1.Size = new System.Drawing.Size(1363, 92);
             this.panel1.TabIndex = 16;
             // 
             // btnLogout
@@ -313,7 +317,7 @@ namespace WindowFormViews
             this.btnLogout.FlatAppearance.BorderSize = 0;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Image = ((System.Drawing.Image)(resources.GetObject("btnLogout.Image")));
-            this.btnLogout.Location = new System.Drawing.Point(286, -2);
+            this.btnLogout.Location = new System.Drawing.Point(261, -1);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(62, 46);
             this.btnLogout.TabIndex = 15;
@@ -324,7 +328,7 @@ namespace WindowFormViews
             // 
             this.LabelRolee.AutoSize = true;
             this.LabelRolee.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.LabelRolee.Location = new System.Drawing.Point(108, 41);
+            this.LabelRolee.Location = new System.Drawing.Point(93, 24);
             this.LabelRolee.Name = "LabelRolee";
             this.LabelRolee.Size = new System.Drawing.Size(47, 21);
             this.LabelRolee.TabIndex = 14;
@@ -334,7 +338,7 @@ namespace WindowFormViews
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(44, 42);
+            this.label3.Location = new System.Drawing.Point(40, 24);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 21);
             this.label3.TabIndex = 13;
@@ -344,7 +348,7 @@ namespace WindowFormViews
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(41, 12);
+            this.label1.Location = new System.Drawing.Point(40, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 21);
             this.label1.TabIndex = 8;
@@ -354,11 +358,37 @@ namespace WindowFormViews
             // 
             this.labelName.AutoSize = true;
             this.labelName.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelName.Location = new System.Drawing.Point(102, 11);
+            this.labelName.Location = new System.Drawing.Point(93, 3);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(57, 21);
             this.labelName.TabIndex = 12;
             this.labelName.Text = "label2";
+            // 
+            // btnMyLeague
+            // 
+            this.btnMyLeague.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnMyLeague.FlatAppearance.BorderSize = 0;
+            this.btnMyLeague.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMyLeague.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnMyLeague.Location = new System.Drawing.Point(33, 48);
+            this.btnMyLeague.Name = "btnMyLeague";
+            this.btnMyLeague.Size = new System.Drawing.Size(127, 35);
+            this.btnMyLeague.TabIndex = 16;
+            this.btnMyLeague.Text = "My League";
+            this.btnMyLeague.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button1.Location = new System.Drawing.Point(33, 48);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(127, 35);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "My Club";
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 
@@ -418,5 +448,7 @@ namespace WindowFormViews
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnMyLeague;
     }
 }
