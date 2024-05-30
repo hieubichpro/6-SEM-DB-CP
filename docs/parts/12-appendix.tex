@@ -160,7 +160,8 @@ declare
 	week int;
 	random_index int;
 begin
-	select array_agg(id_club) into full_id from leagueclub where id_league = id_l;
+	select array_agg(id_club) into full_id 
+	from leagueclub where id_league = id_l;
 	size := array_length(full_id, 1);
 	select array_agg(id) into id_stadiums from stadiums;
 	ss := array_length(id_stadiums, 1);
@@ -172,13 +173,19 @@ begin
 		call createMatch(id_l, id_stadiums[getRandomNum(ss)], full_id[2], full_id[1], week + size - 1, start_second_leg);
 	
 		for i in 0..(size / 2 - 2) loop
-			call createMatch(id_l, id_stadiums[getRandomNum(ss)], full_id[3 + i], full_id[size - i], week, start_first_leg);
-			call createMatch(id_l, id_stadiums[getRandomNum(ss)], full_id[size - i], full_id[3 + i], week + size - 1, start_second_leg);			
+			call createMatch(id_l, id_stadiums[getRandomNum(ss)], full_id[3 + i], 
+			full_id[size - i], week, start_first_leg);
+			call createMatch(id_l, 
+			id_stadiums[getRandomNum(ss)],
+			 full_id[size - i], full_id[3 + i], 
+			 week + size - 1, start_second_leg);			
 		end loop;
 		
 		full_id = rotate_teams(full_id);
-		start_first_leg := start_first_leg + INTERVAL '7' day;
-		start_second_leg := start_second_leg + INTERVAL '7' day;
+		start_first_leg := start_first_leg +
+		 INTERVAL '7' day;
+		start_second_leg := start_second_leg
+		 + INTERVAL '7' day;
 	end loop;
 end;
 $$
@@ -225,106 +232,106 @@ for each row execute function calculate_rating();
 \end{lstlisting}
 
 \begin{lstlisting}[caption={Создание роли администратора и выдыча права}, label={lst:role1}]
-	create role league_admin with
-	connection limit -1
-	login
-	password '#admin123';
-	
-	grant all privileges
-	on all tables in schema public
-	to league_admin;
+create role league_admin with
+connection limit -1
+login
+password '#admin123';
+
+grant all privileges
+on all tables in schema public
+to league_admin;
 \end{lstlisting}
 
 \begin{lstlisting}[caption={Создание роли судьи и выдыча права}, label={lst:role2}]
-	create role league_referee with
-	connection limit - 1
-	login
-	password '#referee123';
-	
-	grant select on all tables in schema public
-	to league_referee;
-	
-	grant insert on
-	public."leagues",
-	public."leagueclub",
-	public."feedbacks",
-	public."matches"
-	to league_referee;	
-	
-	grant update on
-	public."leagues",
-	public."users",
-	public."matches"
-	to league_referee;
-	
-	grant delete on
-	public."requests"
-	to league_referee;
+create role league_referee with
+connection limit - 1
+login
+password '#referee123';
+
+grant select on all tables in schema public
+to league_referee;
+
+grant insert on
+public."leagues",
+public."leagueclub",
+public."feedbacks",
+public."matches"
+to league_referee;	
+
+grant update on
+public."leagues",
+public."users",
+public."matches"
+to league_referee;
+
+grant delete on
+public."requests"
+to league_referee;
 \end{lstlisting}
 
 \begin{lstlisting}[caption={Создание роли тренера и выдыча права}, label={lst:role3}]
-	create role league_coach with
-	connection limit - 1
-	login
-	password '#coach123';
-	
-	grant select on all tables in schema public
-	to league_coach;
-	
-	grant insert on
-	public."clubs",
-	public."feedbacks",
-	public."requests"
-	to league_coach;
-	
-	grant update on
-	public."clubs",
-	public."users"
-	to league_coach;
-	
-	grant delete on
-	public."requests"
-	to league_coach;
+create role league_coach with
+connection limit - 1
+login
+password '#coach123';
+
+grant select on all tables in schema public
+to league_coach;
+
+grant insert on
+public."clubs",
+public."feedbacks",
+public."requests"
+to league_coach;
+
+grant update on
+public."clubs",
+public."users"
+to league_coach;
+
+grant delete on
+public."requests"
+to league_coach;
 
 \end{lstlisting}
 
 \begin{lstlisting}[caption={Создание роли футболиста и выдыча права}, label={lst:role4}]
-	create role league_footballer with
-	connection limit -1
-	login
-	password '#footballer123';
-	
-	grant select on all tables in schema public
-	to league_footballer;
-	
-	grant insert on
-	public."feedbacks",
-	public."requests"
-	to league_footballer;
-	
-	grant update on
-	public."users"
-	to league_footballer;
-	
-	grant delete on
-	public."requests",
-	public."feedbacks"
-	to league_footballer;
+create role league_footballer with
+connection limit -1
+login
+password '#footballer123';
+
+grant select on all tables in schema public
+to league_footballer;
+
+grant insert on
+public."feedbacks",
+public."requests"
+to league_footballer;
+
+grant update on
+public."users"
+to league_footballer;
+
+grant delete on
+public."requests",
+public."feedbacks"
+to league_footballer;
 \end{lstlisting}
 
 \begin{lstlisting}[caption={Создание роли гости и выдыча права}, label={lst:role5}]
-	create role league_guest with
-	connection limit -1
-	login
-	password '#guest123';
-	
-	grant select on all tables in schema public
-	to league_referee;	
-	
-	grant insert on
-	public."users",
-	public."feedbacks"
-	to league_guest
+create role league_guest with
+connection limit -1
+login
+password '#guest123';
+
+grant select on all tables in schema public
+to league_referee;	
+
+grant insert on
+public."users",
+public."feedbacks"
+to league_guest
 \end{lstlisting}
 
 \begin{lstlisting}[caption={Реализация тестирования для функции get\_table\_league}, label={lst:test1}]
@@ -382,22 +389,25 @@ language plpgsql;
 \end{lstlisting}
 
 \begin{lstlisting}[caption={Реализация тестирования для триггера auto\_cal\_rating}, label={lst:test2}]
-	CREATE OR REPLACE FUNCTION test_trigger()
-	RETURNS void AS $$
-	DECLARE
-	rec RECORD;
-	BEGIN
-	select rating from leagues where id in (5, 8, 9);
-	INSERT INTO feedbacks(grade, id_user, id_league) VALUES (3, 100, 5);
-	INSERT INTO feedbacks(grade, id_user, id_league) VALUES (5, 100, 8);
-	INSERT INTO feedbacks(grade, id_user, id_league) VALUES (1, 100, 9);
-	
+CREATE OR REPLACE FUNCTION test_trigger()
+RETURNS void AS $$
+DECLARE
+rec RECORD;
+BEGIN
+select rating from leagues where id in (5, 8, 9);
+INSERT INTO feedbacks(grade, id_user, id_league) 
+VALUES (3, 100, 5);
+INSERT INTO feedbacks(grade, id_user, id_league) 
+VALUES (5, 100, 8);
+INSERT INTO feedbacks(grade, id_user, id_league) 
+VALUES (1, 100, 9);
 
-	FOR rec IN (SELECT id, rating FROM leagues WHERE (id, rating) NOT IN ((5, 2.24), (8, 3), (9, 1))) LOOP
-	RAISE EXCEPTION 'Test failed: Unexpected result %', rec;
-	END LOOP;
-	
-	RAISE NOTICE 'All tests passed';
-	END;
-	$$ LANGUAGE plpgsql;
+
+FOR rec IN (SELECT id, rating FROM leagues WHERE (id, rating) NOT IN ((5, 2.24), (8, 3), (9, 1))) LOOP
+RAISE EXCEPTION 'Test failed: Unexpected result %', rec;
+END LOOP;
+
+RAISE NOTICE 'All tests passed';
+END;
+$$ LANGUAGE plpgsql;
 \end{lstlisting}

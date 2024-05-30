@@ -101,38 +101,26 @@
 \newcommand{\xmark}{{\ding{55}}}%
 
 \usepackage{listings}
-\usepackage{xcolor}
-\usepackage{caption}
-\usepackage{hyperref}
-
-\lstset{
-	language=SQL,
-	basicstyle=\ttfamily\small,
-	keywordstyle=\color{blue}\bfseries,
-	commentstyle=\color{gray},
-	stringstyle=\color{red},
-	numbers=left,
-	numberstyle=\tiny\color{gray},
-	stepnumber=1,
-	numbersep=10pt,
-	backgroundcolor=\color{white},
-	showspaces=false,
+% Для листинга кода:
+\lstset{%
+	language=SQL,   					% выбор языка для подсветки	
+	basicstyle=\footnotesize\ttfamily,
+	keywordstyle=\color{black},
+	numbersep=5pt,
+	numbers=left,						% где поставить нумерацию строк (слева\справа)
+	%numberstyle=,					    % размер шрифта для номеров строк
+	stepnumber=1,						% размер шага между двумя номерами строк
+	xleftmargin=17pt,
 	showstringspaces=false,
-	frame=single,
-	breaklines=true,
-	breakatwhitespace=true,
-	tabsize=2,
-	captionpos=t, % Позиция подписи (b - снизу, t - сверху)
-	morekeywords={SERIAL, PRIMARY, KEY, REFERENCES, integer, varchar, if} % Добавьте больше ключевых слов PostgreSQL, если нужно
+	numbersep=5pt,						% как далеко отстоят номера строк от подсвечиваемого кода
+	frame=single,						% рисовать рамку вокруг кода
+	tabsize=4,							% размер табуляции по умолчанию равен 4 пробелам
+	captionpos=t,						% позиция заголовка вверху [t] или внизу [b]
+	breaklines=true,					
+	breakatwhitespace=true,				% переносить строки только если есть пробел
+	escapeinside={\#*}{*)},				% если нужно добавить комментарии в коде
+	backgroundcolor=\color{white}
 }
-
-%\hypersetup{
-%	colorlinks=true,
-%%	linkcolor=blue,
-%%	citecolor=blue,
-%	filecolor=magenta,
-%	urlcolor=blue
-%}
 
 
 \lstset{
