@@ -173,6 +173,7 @@ begin
 	
 	for week in 1..(size - 1) loop
 		call createMatch(id_l, id_stadiums[getRandomNum(ss)], full_id[1], full_id[2], week, start_first_leg);
+		
 		call createMatch(id_l, id_stadiums[getRandomNum(ss)], full_id[2], full_id[1], week + size - 1, start_second_leg);
 	
 		for i in 0..(size / 2 - 2) loop
@@ -183,6 +184,7 @@ begin
 			 full_id[size - i], full_id[3 + i], 
 			 week + size - 1, start_second_leg);			
 		end loop;
+		
 		
 		full_id = rotate_teams(full_id);
 		start_first_leg := start_first_leg +
@@ -204,9 +206,11 @@ declare
 begin
 	size := array_length(full_id, 1);
 	last_id := full_id[size];
+	
 	for i in reverse size..3 loop
 	full_id[i] := full_id[i - 1];
 	end loop;
+	
 	full_id[2] := last_id;
 	return full_id;
 end;
@@ -224,6 +228,7 @@ begin
 	from feedbacks f
 	where id_league = new.id_league)
 	where id = new.id_league;
+	
 	return new;
 end;
 $$
@@ -240,11 +245,12 @@ connection limit -1
 login
 password '#admin123';
 
+
 grant all privileges
 on all tables in schema public
 to league_admin;
 \end{lstlisting}
-\clearpage
+
 \begin{lstlisting}[caption={Создание роли судьи и выдыча права}, label={lst:role2}]
 create role league_referee with
 connection limit - 1
