@@ -53,13 +53,13 @@ namespace WindowFormViews
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel_main = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnMyClub = new System.Windows.Forms.Button();
+            this.btnMyLeague = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.LabelRolee = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
-            this.btnMyLeague = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -295,7 +295,7 @@ namespace WindowFormViews
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnMyClub);
             this.panel1.Controls.Add(this.btnMyLeague);
             this.panel1.Controls.Add(this.labelDate);
             this.panel1.Controls.Add(this.btnLogout);
@@ -310,6 +310,32 @@ namespace WindowFormViews
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1363, 92);
             this.panel1.TabIndex = 16;
+            // 
+            // btnMyClub
+            // 
+            this.btnMyClub.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnMyClub.FlatAppearance.BorderSize = 0;
+            this.btnMyClub.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMyClub.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnMyClub.Location = new System.Drawing.Point(33, 48);
+            this.btnMyClub.Name = "btnMyClub";
+            this.btnMyClub.Size = new System.Drawing.Size(127, 35);
+            this.btnMyClub.TabIndex = 17;
+            this.btnMyClub.Text = "My Club";
+            this.btnMyClub.UseVisualStyleBackColor = false;
+            // 
+            // btnMyLeague
+            // 
+            this.btnMyLeague.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnMyLeague.FlatAppearance.BorderSize = 0;
+            this.btnMyLeague.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMyLeague.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnMyLeague.Location = new System.Drawing.Point(33, 48);
+            this.btnMyLeague.Name = "btnMyLeague";
+            this.btnMyLeague.Size = new System.Drawing.Size(127, 35);
+            this.btnMyLeague.TabIndex = 16;
+            this.btnMyLeague.Text = "My League";
+            this.btnMyLeague.UseVisualStyleBackColor = false;
             // 
             // btnLogout
             // 
@@ -363,32 +389,6 @@ namespace WindowFormViews
             this.labelName.Size = new System.Drawing.Size(57, 21);
             this.labelName.TabIndex = 12;
             this.labelName.Text = "label2";
-            // 
-            // btnMyLeague
-            // 
-            this.btnMyLeague.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnMyLeague.FlatAppearance.BorderSize = 0;
-            this.btnMyLeague.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMyLeague.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnMyLeague.Location = new System.Drawing.Point(33, 48);
-            this.btnMyLeague.Name = "btnMyLeague";
-            this.btnMyLeague.Size = new System.Drawing.Size(127, 35);
-            this.btnMyLeague.TabIndex = 16;
-            this.btnMyLeague.Text = "My League";
-            this.btnMyLeague.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Location = new System.Drawing.Point(33, 48);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(127, 35);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "My Club";
-            this.button1.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 
@@ -448,7 +448,7 @@ namespace WindowFormViews
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnMyClub;
         private System.Windows.Forms.Button btnMyLeague;
     }
 }
