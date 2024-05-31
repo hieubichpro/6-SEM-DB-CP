@@ -53,7 +53,7 @@
 create table if not exists Users
 (
 	id serial primary key,
-	login varchar(30) not null,
+	login varchar(30) not null unique,
 	password varchar(30) not null,
 	role varchar(20) not null,
 	firstname varchar(30) default 'hieu',
@@ -75,7 +75,7 @@ create table if not exists Clubs
 	name varchar(50) not null,
 	id_country int not null,
 	
-	foreign key (id_country) references Countries(id)
+	foreign key (id_country) references Countries(id) on delete cascade
 );
 
 create table if not exists Stadiums
@@ -85,7 +85,7 @@ create table if not exists Stadiums
 	capacity int not null,
 	id_country int not null,
 	
-	foreign key (id_country) references Countries(id)
+	foreign key (id_country) references Countries(id) on delete cascade
 );
 
 create table if not exists Leagues
@@ -95,7 +95,7 @@ create table if not exists Leagues
 	rating float,
 	id_user int,
 	
-	foreign key (id_user) references Users(id)
+	foreign key (id_user) references Users(id) on delete cascade
 );
 
 create table if not exists Matches
@@ -108,10 +108,10 @@ create table if not exists Matches
 	id_home_club int not null,
 	id_guess_club int not null,
 	
-	foreign key (id_league) references Leagues(id),
-	foreign key (id_stadium) references Stadiums(id),
-	foreign key (id_home_club) references Clubs(id),
-	foreign key (id_guess_club) references Clubs(id)
+	foreign key (id_league) references Leagues(id) on delete cascade,
+	foreign key (id_stadium) references Stadiums(id) on delete cascade,
+	foreign key (id_home_club) references Clubs(id) on delete cascade,
+	foreign key (id_guess_club) references Clubs(id) on delete cascade
 );
 
 create table if not exists Requests
@@ -119,24 +119,22 @@ create table if not exists Requests
 	id serial not null primary key,
 	created_time timestamp default now(),
 	id_league int default -1,
-	id_club int default -1,
+	id_club int not null,
 	id_user int not null,
 	
-	foreign key (id_league) references Leagues(id),
-	foreign key (id_club) references Clubs(id),
-	foreign key (id_user) references Users(id)
+	foreign key (id_club) references Clubs(id) on delete cascade,
+	foreign key (id_user) references Users(id) on delete cascade
 );
 
 create table if not exists Feedbacks
 (
 	id serial not null primary key,
-	comment varchar(200),
 	grade int not null,
 	id_user int not null,
 	id_league int not null,
 	
-	foreign key (id_user) references Users(id),
-	foreign key (id_league) references Leagues(id)
+	foreign key (id_user) references Users(id) on delete cascade,
+	foreign key (id_league) references Leagues(id) on delete cascade
 );
 
 create table if not exists LeagueClub
@@ -145,8 +143,8 @@ create table if not exists LeagueClub
 	id_league int not null,
 	id_club int not null,
 	
-	foreign key (id_league) references Leagues(id),
-	foreign key (id_club) references Clubs(id)
+	foreign key (id_league) references Leagues(id) on delete cascade,
+	foreign key (id_club) references Clubs(id) on delete cascade
 );
 \end{lstlisting}
 

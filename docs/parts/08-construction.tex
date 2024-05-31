@@ -26,7 +26,7 @@
 			\hline
 			Столбец & Тип данных & Ограничения & Значение \\
 			\hline
-			id & serial & PRIMARY KEY & Идентификатор \\
+			id & serial & PK & Идентификатор \\
 			\hline
 			last\_name & VARCHAR(32) & & Фамилия \\
 			\hline
@@ -54,15 +54,15 @@
 			\hline
 			Столбец & Тип данных & Ограничения & Значение \\
 			\hline
-			id & SERIAL & PRIMARY KEY & Идентификатор \\
+			id & SERIAL & PK & Идентификатор \\
 			\hline
 			name & VARCHAR(64) & NOT NULL & Название турнира \\
 			\hline
 			rating & DOUBLE & NOT NULL & Рейтинг турнира\\
 			\hline
-			id\_user & INT & FOREIGN KEY &  ID пользователя \\
+			id\_user & INT & FK &  ID пользователя \\
 			\hline
-			id\_country & INT & FOREIGN KEY & ID страны \\
+			id\_country & INT & FK & ID страны \\
 			\hline
 		\end{tabular}
 		\label{table:db:league}
@@ -76,11 +76,11 @@
 			\hline
 			Столбец & Тип данных & Ограничения & Значение \\
 			\hline
-			id & SERIAL & PRIMARY KEY & Идентификатор \\
+			id & SERIAL & PK & Идентификатор \\
 			\hline
 			name & VARCHAR(64) & NOT NULL & Название команды \\
 			\hline
-			id\_country & INT & FOREIGN KEY & ID страны \\
+			id\_country & INT & FK & ID страны \\
 			\hline
 		\end{tabular}
 		\label{table:db:club}
@@ -94,13 +94,13 @@
 			\hline
 			Столбец & Тип данных & Ограничения & Значение \\
 			\hline
-			id & SERIAL & PRIMARY KEY & Идентификатор \\
+			id & SERIAL & PK & Идентификатор \\
 			\hline
 			name & VARCHAR(64) & NOT NULL & Название стадиона \\
 			\hline
 			capacity & INT & NOT NULL & Количество мест \\
 			\hline
-			id\_country & INT & FOREIGN KEY & ID страны \\
+			id\_country & INT & FK & ID страны \\
 			\hline
 		\end{tabular}
 		\label{table:db:stadium}
@@ -114,7 +114,7 @@
 			\hline
 			Столбец & Тип данных & Ограничения & Значение \\
 			\hline
-			id & SERIAL & PRIMARY KEY & Идентификатор \\
+			id & SERIAL & PK & Идентификатор \\
 			\hline
 			name & VARCHAR(64) & NOT NULL & Название страны \\
 			\hline
@@ -132,13 +132,13 @@
 			\hline
 			Столбец & Тип данных & Ограничения & Значение \\
 			\hline
-			id & SERIAL & PRIMARY KEY & Идентификатор \\
+			id & SERIAL & PK & Идентификатор \\
 			\hline
 			mark & INT & NOT NULL & Оценка \\
 			\hline
-			id\_user & INT & FOREIGN KEY & ID пользователя \\
+			id\_user & INT & FK & ID пользователя \\
 			\hline
-			id\_league & INT & FOREIGN KEY & ID турнира \\
+			id\_league & INT & FK & ID турнира \\
 			\hline
 		\end{tabular}
 		\label{table:db:feedback}
@@ -152,13 +152,13 @@
 			\hline
 			Столбец & Тип данных & Ограничения & Значение \\
 			\hline
-			id & SERIAL & PRIMARY KEY & Идентификатор \\
+			id & SERIAL & PK & Идентификатор \\
 			\hline
 			created\_time & DATE & NOT NULL & Время создания \\
 			\hline
-			id\_user & INT & FOREIGN KEY & ID пользователя \\
+			id\_user & INT & FK & ID пользователя \\
 			\hline
-			id\_club & INT & FOREIGN KEY & ID клуба \\
+			id\_club & INT & FK & ID клуба \\
 			\hline
 			id\_league & INT &  & ID турнира \\
 			\hline
@@ -174,19 +174,19 @@
 			\hline
 			Столбец & Тип данных & Ограничения & Значение \\
 			\hline
-			id & SERIAL & PRIMARY KEY & Идентификатор \\
+			id & SERIAL & PK & Идентификатор \\
 			\hline
 			goal\_home & DATE &  & Голы домашнего клуба \\
 			\hline
 			goal\_guest & INT &  & Голы гостевого клуба \\
 			\hline
-			id\_league & INT & FOREIGN KEY & ID турнира \\
+			id\_league & INT & FK & ID турнира \\
 			\hline
-			id\_stadium & INT & FOREIGN KEY & ID стадиона \\
+			id\_stadium & INT & FK & ID стадиона \\
 			\hline
-			id\_home & INT & FOREIGN KEY & ID дом. клуба \\
+			id\_home & INT & FK & ID дом. клуба \\
 			\hline
-			id\_guest & INT & FOREIGN KEY & ID гост. клуба \\
+			id\_guest & INT & FK & ID гост. клуба \\
 			\hline
 			week & INT & NOT NULL & Неделя \\
 			\hline
@@ -204,11 +204,11 @@
 			\hline
 			Столбец & Тип данных & Ограничения & Значение \\
 			\hline
-			id & SERIAL & PRIMARY KEY & Идентификатор \\
+			id & SERIAL & PK & Идентификатор \\
 			\hline
-			id\_league & INT & FOREIGN KEY & ID турнира \\
+			id\_league & INT & FK & ID турнира \\
 			\hline
-			id\_club & INT & FOREIGN KEY & ID клуба \\
+			id\_club & INT & FK & ID клуба \\
 			\hline
 		\end{tabular}
 		\label{table:db:leagueclub}
@@ -228,7 +228,7 @@
 Приложение будет состоять из 3 компонентов, каждый из которых имеет свою задачу.
 \begin{enumerate}
 	\item Компонент доступа к базе данных (Data Access) --- выполняет запросы к данным, обеспечивает операции CRUD (Create, Read, Update, Delete).
-	\item Компонент реазации интерфейса (UI) --- пользовательский интерфейс, обеспечивает взаимодействие с программой.
+	\item Компонент реазации интерфейса (User Interface) --- пользовательский интерфейс, обеспечивает взаимодействие с программой.
 	\item Компонент бизнес логики (Business Logic) --- обрабатывает бизнес правила, управляет данными и обрабатывает исключения.
 \end{enumerate}
 
@@ -247,7 +247,7 @@
 Триггер --- это функция, которая автоматически вызывается после действия (insert, update, delete) над определенной таблицей \cite{light-model}. 
 
 Когда пользователь оставляет свои отзывы, необходимо пересчитать рейтинг турнира.
-При добавлении пользовательского отзыва нужно обновить значение поля <<rating>> в таблице турнира. Для процесса перерасчета рейтинга было бы удобно создать триггер, который обновляет поля рейтинга автоматически при добавлении отзыва.
+При добавлении пользовательского отзыва нужно обновить значение поля <<rating>> в таблице турнира. Содается триггер, который обновляет поля рейтинга автоматически при добавлении отзыва.
 
 На рисунке \ref{img:trigger} приведена схема триггера для автоматически перерасчета рейтинга турнира.
 
@@ -281,4 +281,5 @@
 
 \subsection*{Вывод}
 Были приведено проектирование базы данных и проектирование приложения.
-Также был спроектирован триггер, осуществляющие автоматически пересчитывать рейтинга турнира при добавлении новых оценок.
+Был спроектирован триггер, осуществляющие автоматически пересчитывать рейтинга турнира при добавлении новых оценок.
+Также была приведена схема алгоритма составления расписания турнира.
