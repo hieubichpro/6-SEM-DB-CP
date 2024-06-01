@@ -1,5 +1,6 @@
 ﻿using FootballLeague.BL;
 using FootballLeague.DA;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -58,11 +59,12 @@ namespace WindowFormViews
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = textboxUsername.Text;
+            string login = textboxUsername.Text;
             string password = textboxPassword.Text;
-            if (userService.Login(username, password))
+            User user = userService.Login(login, password);
+            if (user != null)
             {
-                MainForm m = new MainForm(username, userService, leagueService, countryService, clubService, stadiumService, requestService);
+                MainForm m = new MainForm(ref user, userService, leagueService, countryService, clubService, stadiumService, requestService, feedbackService, matchService);
                 m.ShowDialog();
             }
             else
@@ -95,7 +97,8 @@ namespace WindowFormViews
 
         private void btnGuest_Click(object sender, EventArgs e)
         {
-            MainForm m = new MainForm("Guest", userService, leagueService, countryService, clubService, stadiumService, requestService);
+            User user = new User("Guest");
+            MainForm m = new MainForm(ref user , userService, leagueService, countryService, clubService, stadiumService, requestService, feedbackService, matchService);
             m.ShowDialog();
         }
     }

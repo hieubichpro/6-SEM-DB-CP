@@ -1,5 +1,7 @@
 ﻿using FootballLeague.BL;
+using FootballLeague.BL.IRepositories;
 using FootballLeague.DA;
+using FootballLeague.WindowFormViews;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,28 +22,27 @@ namespace FootballLeague
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            ConnectionArguments connectionArgs = new ConnectionArguments("localhost", "postgres", "123456789", 5432, "myDB");
-
-            UserRepository userRepo = new UserRepository(connectionArgs);
-            LeagueRepository leagueRepo = new LeagueRepository(connectionArgs);
-            CountryRepository countryRepo = new CountryRepository(connectionArgs);
-            ClubRepository clubRepo = new ClubRepository(connectionArgs);
-            StadiumRepository stadiumRepo = new StadiumRepository(connectionArgs);
-            FeedbackRepository feedbackRepo = new FeedbackRepository(connectionArgs);
-            MatchRepository matchRepo = new MatchRepository(connectionArgs);
-            RequestRepository requestRepo = new RequestRepository(connectionArgs);
+            IUserRepository userRepo = new UserRepository();
+            ILeagueRepository leagueRepo = new LeagueRepository();
+            ICountryRepository countryRepo = new CountryRepository();
+            IClubRepository clubRepo = new ClubRepository();
+            IStadiumRepository stadiumRepo = new StadiumRepository();
+            IFeedbackRepository feedbackRepo = new FeedbackRepository();
+            IMatchRepository matchRepo = new MatchRepository();
+            IRequestRepository requestRepo = new RequestRepository();
 
             UserService userService = new UserService(userRepo);
-            LeagueService leagueService = new LeagueService(leagueRepo);
+            LeagueService leagueService = new LeagueService(leagueRepo, matchRepo, clubRepo, stadiumRepo);
             CountryService countryService = new CountryService(countryRepo);
             ClubService clubService = new ClubService(clubRepo);
-            StadiumService stadiumService = new StadiumService(stadiumRepo);
+            StadiumService stadiumService = new StadiumService(stadiumRepo, countryRepo);
             FeedbackService feedbackService = new FeedbackService(feedbackRepo);
-            MatchService matchService = new MatchService(matchRepo);
+            MatchService matchService = new MatchService(matchRepo, clubRepo, stadiumRepo);
             RequestService requestService = new RequestService(requestRepo);
 
-
+            //Application.Run(new MatchForm());
             Application.Run(new SplashForm(userService, leagueService, countryService, clubService, stadiumService, feedbackService, matchService, requestService));
         }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FootballLeague.BL;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,22 +14,19 @@ namespace FootballLeague.WindowFormViews
 {
     public partial class CoachForm : Form
     {
-        private string username;
+        private User user;
         private UserService userService;
-        public CoachForm(string username, UserService userService)
+        public CoachForm(ref User user, UserService userService)
         {
             InitializeComponent();
-            this.username = username;
+            this.user = user;
             this.userService = userService;
         }
-
-        public string Username { get => username; set => username = value; }
         public UserService UserService { get => userService; set => userService = value; }
 
         private void showAllCoach()
         {
-            dynamic allCoach = userService.getAllUserAndInfoByRole("Coach");
-            dgvCoach.DataSource = allCoach;
+            dgvCoach.DataSource = userService.getAllUserAndInfoByRole("Coach"); ;
         }
 
         private void CoachForm_Load(object sender, EventArgs e)

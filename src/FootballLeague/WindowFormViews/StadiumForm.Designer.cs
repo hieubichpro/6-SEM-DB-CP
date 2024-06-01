@@ -29,13 +29,11 @@ namespace FootballLeague.WindowFormViews
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StadiumForm));
             this.dgvStadium = new System.Windows.Forms.DataGridView();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnCreate = new System.Windows.Forms.Button();
-            this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBoxName = new Guna.UI2.WinForms.Guna2TextBox();
@@ -45,6 +43,7 @@ namespace FootballLeague.WindowFormViews
             this.Country = new System.Windows.Forms.Label();
             this.cbbCountry = new Guna.UI2.WinForms.Guna2ComboBox();
             this.mypanel = new System.Windows.Forms.Panel();
+            this.btnModify = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStadium)).BeginInit();
             this.panel1.SuspendLayout();
             this.mypanel.SuspendLayout();
@@ -57,8 +56,10 @@ namespace FootballLeague.WindowFormViews
             this.dgvStadium.Location = new System.Drawing.Point(440, 156);
             this.dgvStadium.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.dgvStadium.Name = "dgvStadium";
+            this.dgvStadium.RowHeadersWidth = 51;
             this.dgvStadium.Size = new System.Drawing.Size(818, 479);
             this.dgvStadium.TabIndex = 18;
+            this.dgvStadium.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStadium_CellClick);
             // 
             // btnDelete
             // 
@@ -67,7 +68,7 @@ namespace FootballLeague.WindowFormViews
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDelete.Location = new System.Drawing.Point(295, 343);
+            this.btnDelete.Location = new System.Drawing.Point(248, 343);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(72, 47);
@@ -83,7 +84,7 @@ namespace FootballLeague.WindowFormViews
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnClear.Location = new System.Drawing.Point(171, 343);
+            this.btnClear.Location = new System.Drawing.Point(151, 343);
             this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(74, 47);
@@ -118,29 +119,6 @@ namespace FootballLeague.WindowFormViews
             this.btnCreate.UseVisualStyleBackColor = false;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
-            // guna2TextBox1
-            // 
-            this.guna2TextBox1.AutoRoundedCorners = true;
-            this.guna2TextBox1.BorderRadius = 19;
-            this.guna2TextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.guna2TextBox1.DefaultText = "";
-            this.guna2TextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.guna2TextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.guna2TextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.guna2TextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2TextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2TextBox1.IconRight = ((System.Drawing.Image)(resources.GetObject("guna2TextBox1.IconRight")));
-            this.guna2TextBox1.Location = new System.Drawing.Point(612, 105);
-            this.guna2TextBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2TextBox1.Name = "guna2TextBox1";
-            this.guna2TextBox1.PasswordChar = '\0';
-            this.guna2TextBox1.PlaceholderText = "Type something";
-            this.guna2TextBox1.SelectedText = "";
-            this.guna2TextBox1.Size = new System.Drawing.Size(344, 40);
-            this.guna2TextBox1.TabIndex = 20;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -149,7 +127,7 @@ namespace FootballLeague.WindowFormViews
             this.label1.Location = new System.Drawing.Point(510, 36);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 33);
+            this.label1.Size = new System.Drawing.Size(150, 40);
             this.label1.TabIndex = 0;
             this.label1.Text = "Stadium";
             // 
@@ -214,7 +192,7 @@ namespace FootballLeague.WindowFormViews
             this.label2.Font = new System.Drawing.Font("Century", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(77, 104);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 20);
+            this.label2.Size = new System.Drawing.Size(65, 23);
             this.label2.TabIndex = 25;
             this.label2.Text = "Name";
             // 
@@ -224,7 +202,7 @@ namespace FootballLeague.WindowFormViews
             this.label3.Font = new System.Drawing.Font("Century", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(55, 174);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 20);
+            this.label3.Size = new System.Drawing.Size(91, 23);
             this.label3.TabIndex = 26;
             this.label3.Text = "Capacity";
             // 
@@ -234,7 +212,7 @@ namespace FootballLeague.WindowFormViews
             this.Country.Font = new System.Drawing.Font("Century", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Country.Location = new System.Drawing.Point(59, 259);
             this.Country.Name = "Country";
-            this.Country.Size = new System.Drawing.Size(71, 20);
+            this.Country.Size = new System.Drawing.Size(86, 23);
             this.Country.TabIndex = 27;
             this.Country.Text = "Country";
             // 
@@ -257,6 +235,7 @@ namespace FootballLeague.WindowFormViews
             // 
             // mypanel
             // 
+            this.mypanel.Controls.Add(this.btnModify);
             this.mypanel.Controls.Add(this.textBoxName);
             this.mypanel.Controls.Add(this.cbbCountry);
             this.mypanel.Controls.Add(this.textBoxCapacity);
@@ -271,15 +250,30 @@ namespace FootballLeague.WindowFormViews
             this.mypanel.Size = new System.Drawing.Size(431, 536);
             this.mypanel.TabIndex = 30;
             // 
+            // btnModify
+            // 
+            this.btnModify.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnModify.FlatAppearance.BorderSize = 0;
+            this.btnModify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModify.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModify.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnModify.Location = new System.Drawing.Point(337, 343);
+            this.btnModify.Margin = new System.Windows.Forms.Padding(4);
+            this.btnModify.Name = "btnModify";
+            this.btnModify.Size = new System.Drawing.Size(81, 47);
+            this.btnModify.TabIndex = 30;
+            this.btnModify.Text = "MODIFY";
+            this.btnModify.UseVisualStyleBackColor = false;
+            this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
+            // 
             // StadiumForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1258, 733);
             this.Controls.Add(this.mypanel);
             this.Controls.Add(this.dgvStadium);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.guna2TextBox1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -302,7 +296,6 @@ namespace FootballLeague.WindowFormViews
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnCreate;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private Guna.UI2.WinForms.Guna2TextBox textBoxName;
@@ -312,5 +305,6 @@ namespace FootballLeague.WindowFormViews
         private System.Windows.Forms.Label Country;
         private Guna.UI2.WinForms.Guna2ComboBox cbbCountry;
         private System.Windows.Forms.Panel mypanel;
+        private System.Windows.Forms.Button btnModify;
     }
 }

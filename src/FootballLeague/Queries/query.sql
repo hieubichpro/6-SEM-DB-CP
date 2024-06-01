@@ -17,7 +17,7 @@ create table if not exists Users
 	firstname varchar(30) default 'hieu',
 	lastname varchar(30) default 'bich',
 	age int default 25,
-	id_club int default -1
+	id_club int default -1,
 );
 
 create table if not exists Countries
@@ -107,19 +107,10 @@ create table if not exists LeagueClub
 	foreign key (id_club) references Clubs(id)
 );
 
-select * from users
+alter table matches
+drop constraint matches_id_league_fkey;
 
-select * from requests
-
-select r.id, r.created_time, c.name as Club, u.firstname || ' ' || u.lastname as Coach
-from clubs c join requests r on r.id_club = c.id
-join users u on r.id_user = u.id
-where r.id_league = 1;
-
-select * from leagueclub
-
-select * from users
-
-select r.id, r.created_time, c.name
-from requests r join clubs c on r.id_club = c.id
-where id_user = 
+alter table matches
+add constraint mlfkey foreign key (id_league) references Leagues(id) on delete cascade;
+alter table feedbacks
+add constraint flfkey foreign key (id_league) references Leagues(id) on delete cascade;

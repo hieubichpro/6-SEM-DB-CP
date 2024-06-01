@@ -5,45 +5,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
+using FootballLeague.BL.IRepositories;
 
 namespace FootballLeague.DA
 {
-    public class CountryRepository
+    public class CountryRepository : ICountryRepository
     {
-        private NpgsqlConnection connector;
-        public NpgsqlConnection Connector { get => connector; set => connector = value; }
-
-        public CountryRepository(ConnectionArguments args)
-        {
-            this.Connector = new NpgsqlConnection(args.getStringConnection());
-            this.Connector.Open();
-        }
-
-
-        internal List<Country> getAllCountries()
+        public List<Country> readAllCountries()
         {
             string query = "select * from countries";
-            NpgsqlCommand command = new NpgsqlCommand(query, this.connector);
-            NpgsqlDataReader reader = command.ExecuteReader();
+            NpgsqlDataReader reader = DataProvider.Instance.ExecuteQuery(query);
             List<Country> allCountries = new List<Country>();
-            if (reader.HasRows)
+            while (reader.Read())
             {
-                while (reader.Read())
-                {
-                    allCountries.Add(new Country(reader.GetInt32(0), reader.GetString(1), reader.GetString(2)));
-                }
+                allCountries.Add(new Country(reader.GetString(1), reader.GetString(2), reader.GetInt32(0)));
             }
             reader.Close();
             return allCountries;
         }
-
-        internal Country getCountryByName(string name)
+        public Country readbyName(string name)
         {
             string query = "select * from countries where name = '" + name + "';";
-            NpgsqlCommand command = new NpgsqlCommand(query, this.connector);
-            NpgsqlDataReader reader = command.ExecuteReader();
+            NpgsqlDataReader reader = DataProvider.Instance.ExecuteQuery(query);
             reader.Read();
-            Country curr = new Country(reader.GetInt32(0), reader.GetString(1), reader.GetString(2));
+            Country curr = new Country(reader.GetString(1), reader.GetString(2), reader.GetInt32(0));
             reader.Close();
             return curr;
         }

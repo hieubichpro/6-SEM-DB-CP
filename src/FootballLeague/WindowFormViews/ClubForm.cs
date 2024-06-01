@@ -13,31 +13,22 @@ namespace FootballLeague.WindowFormViews
 {
     public partial class ClubForm : Form
     {
-        private string username;
+        private User user;
         private UserService userService;
         private ClubService clubService;
         private CountryService countryService;
         private RequestService requestService;
-        public ClubForm(string username, UserService userService, ClubService clubService, CountryService countryService, RequestService requestService)
+        public ClubForm(ref User user, UserService userService, ClubService clubService, CountryService countryService, RequestService requestService)
         {
             InitializeComponent();
-            this.username = username;
+            this.user = user;
             this.userService = userService;
             this.clubService = clubService;
             this.countryService = countryService;
             this.requestService = requestService;
         }
-
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-            NewClub ncl = new NewClub(username, userService, clubService, countryService);
-            ncl.ShowDialog();
-
-        }
-
         private void showAllClubs()
         {
-            dynamic allClub = clubService.getAllClubAndInfo();
             //dgvClub.Columns.Add("id", "id");
             //dgvClub.Columns.Add("name", "name");
             //dgvClub.Columns.Add("id_user", "id_user");
@@ -47,33 +38,39 @@ namespace FootballLeague.WindowFormViews
             //    dgvClub.Rows.Add(club.Id, club.Name, club.IdUser, club.IdCountry);
             //}
             //dgvClub.CurrentCell = null;
-            dgvClub.DataSource = allClub;
+            dgvClub.DataSource = clubService.getAllClubAndInfo();
         }
 
         private void ClubForm_Load(object sender, EventArgs e)
         {
             showAllClubs();
+            if (user.Role != "Footballer")
+            {
+                btnRequest.Visible = false;
+            }
+            else
+            {
+                if (user.IdClub != -1)
+                    btnRequest.Enabled = false;
+            }
         }
 
         private void dgvClub_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int idClub = (int)dgvClub.CurrentRow.Cells[0].Value;
-            dynamic allFootballerInClub = userService.getAllFootballerInClub(idClub);
-            dgvFootballerinClub.DataSource = allFootballerInClub;
+            dgvFootballerinClub.DataSource = userService.getAllFootballerInClub(idClub);
         }
 
         private void btnRequest_Click(object sender, EventArgs e)
         {
             int id_club = (int)dgvClub.CurrentRow.Cells[0].Value;
-            int id_user = userService.getUserByUsername(username).Id;
-            requestService.insertRequestToClub(id_club, id_user);
-
+            requestService.insertRequestToClub(id_club, user.Id);
             MessageBox.Show("Request to club successfully");
         }
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            RequestOfClub roc = new RequestOfClub(username, userService, requestService, clubService);
+            RequestOfClub roc = new RequestOfClub(ref user, userService, requestService, clubService);
             roc.ShowDialog();
         }
     }

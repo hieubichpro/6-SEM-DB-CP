@@ -40,7 +40,6 @@ namespace FootballLeague.WindowFormViews
             this.cbbCountry = new System.Windows.Forms.ComboBox();
             this.textBoxCreator = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -183,27 +182,13 @@ namespace FootballLeague.WindowFormViews
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCancel.Location = new System.Drawing.Point(448, 356);
+            this.btnCancel.Location = new System.Drawing.Point(357, 356);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.UseVisualStyleBackColor = false;
-            // 
-            // btnClear
-            // 
-            this.btnClear.BackColor = System.Drawing.Color.Orange;
-            this.btnClear.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClear.FlatAppearance.BorderSize = 0;
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnClear.Location = new System.Drawing.Point(356, 356);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 23);
-            this.btnClear.TabIndex = 11;
-            this.btnClear.Text = "CLEAR";
-            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnCreate
             // 
@@ -227,7 +212,6 @@ namespace FootballLeague.WindowFormViews
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(625, 441);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.textBoxCreator);
             this.Controls.Add(this.cbbCountry);
@@ -264,7 +248,6 @@ namespace FootballLeague.WindowFormViews
         private System.Windows.Forms.ComboBox cbbCountry;
         private Guna.UI2.WinForms.Guna2TextBox textBoxCreator;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnCreate;
     }
 }

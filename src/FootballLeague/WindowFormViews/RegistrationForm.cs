@@ -65,7 +65,7 @@ namespace WindowFormViews
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            string username = textboxUsername.Text;
+            string login = textboxUsername.Text;
             string password = textboxPassword.Text;
             string repassword = textboxRepassword.Text;
             string role = comboboxRole.Text;
@@ -74,13 +74,19 @@ namespace WindowFormViews
             string age = textboxAge.Text;
             if (string.Compare(password, repassword) == 0)
             {
-                userService.Register(username, password, role, firstname, lastname, age);
-                MessageBox.Show("Registration successfully");
-                this.Close();
+                if (userService.Register(login, password, role, Int32.Parse(age), firstname, lastname) == 0)
+                {
+                    MessageBox.Show("Registration successfully");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("This account already exists");
+                }
             }
             else
             {
-                MessageBox.Show("Password and Repassword have not match");
+                MessageBox.Show("Password and Re-password have not match");
             }
         }
     }

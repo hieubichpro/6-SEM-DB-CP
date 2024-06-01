@@ -66,3 +66,6 @@ C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\Football
 C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.RequestOfLeague.resources
 C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.MyClubForm.resources
 C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.MyLeagueForm.resources
+C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.MatchForm.resources
+C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.ScoreMatchForm.resources
+C:\Users\abcd2\OneDrive\Desktop\FootballLeague\FootballLeague\obj\Debug\FootballLeague.WindowFormViews.AdminForm.resources

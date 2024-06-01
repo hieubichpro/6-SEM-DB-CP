@@ -43,4 +43,49 @@ namespace FootballLeague.DA
             }
         }
     }
+
+    public class DataProvider
+    {
+        private static DataProvider instance;
+        private NpgsqlConnection connector = new NpgsqlConnection(new ConnectionArguments("localhost", "postgres", "123456789", 5432, "myDB").getStringConnection());
+
+        public static DataProvider Instance
+        {
+            get { if (instance == null) instance = new DataProvider(); return instance; }
+            private set {instance = value; }
+        }
+        private DataProvider()
+        {
+            connector.Open();
+        }
+
+        public DataTable getDataTable(string query)
+        {
+            //connector.Open();
+            NpgsqlCommand command = new NpgsqlCommand(query, connector);
+            NpgsqlDataReader reader = command.ExecuteReader();
+            DataTable data = new DataTable();
+            data.Load(reader);
+            reader.Close();
+            //connector.Close();
+            return data;
+        }
+
+        public void ExecuteNonQuery(string query)
+        {
+            //connector.Open();
+            NpgsqlCommand command = new NpgsqlCommand(query, connector);
+            command.ExecuteNonQuery();
+            //connector.Close();
+        }
+
+        public NpgsqlDataReader ExecuteQuery(string query)
+        {
+            //connector.Open();
+            NpgsqlCommand command = new NpgsqlCommand(query, connector);
+            NpgsqlDataReader reader = command.ExecuteReader();
+            //connector.Close();
+            return reader;
+        }
+    }
 }

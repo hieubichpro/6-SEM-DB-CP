@@ -9,7 +9,7 @@ namespace Models
         private int idClub;
         private int idUser;
 
-        public Request(int id, DateTime time, int idLeague, int idClub, int idUser)
+        public Request(DateTime time, int idLeague, int idClub, int idUser, int id = 1)
         {
             this.id = id;
             this.time = time;

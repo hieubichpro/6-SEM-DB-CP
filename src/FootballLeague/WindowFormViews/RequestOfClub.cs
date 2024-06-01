@@ -14,14 +14,14 @@ namespace FootballLeague.WindowFormViews
 {
     public partial class RequestOfClub : Form
     {
-        private string username;
+        private User user;
         private UserService userService;
         private RequestService requestService;
         private ClubService clubService;
-        public RequestOfClub(string username, UserService userService, RequestService requestService, ClubService clubService)
+        public RequestOfClub(ref User user, UserService userService, RequestService requestService, ClubService clubService)
         {
             InitializeComponent();
-            this.username = username;
+            this.user = user;
             this.userService = userService;
             this.requestService = requestService;
             this.clubService = clubService;
@@ -40,20 +40,17 @@ namespace FootballLeague.WindowFormViews
         private void showAllRequest()
         {
             int idClub = (int)ClubForm.dgvClub.CurrentRow.Cells[0].Value;
-            dynamic allInfo = requestService.getAllRequestToClub(idClub);
-            dgvRequest.DataSource = allInfo;
+            dgvRequest.DataSource = requestService.getAllRequestToClub(idClub); ;
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
             //int idRequest = (int)dgvRequest.CurrentRow.Cells[0].Value;
             int idClub = (int)ClubForm.dgvClub.CurrentRow.Cells[0].Value;
-            User currUser = userService.getUserByUsername(username);
-            requestService.deleteRequestByIdUser(currUser.Id);
-            userService.updateIdClubOfUser(currUser.Id, idClub);
+            requestService.deleteRequestByIdUser(user.Id);
+            userService.updateIdClubOfUser(user.Id, idClub);
             showAllRequest();
-            dynamic allFootballerAfterAccept = userService.getAllFootballerInClub(idClub);
-            ClubForm.dgvFootballerinClub.DataSource = allFootballerAfterAccept;
+            ClubForm.dgvFootballerinClub.DataSource = userService.getAllFootballerInClub(idClub);
         }
 
         private void btnReject_Click(object sender, EventArgs e)

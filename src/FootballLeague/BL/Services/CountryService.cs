@@ -1,4 +1,5 @@
-﻿using FootballLeague.DA;
+﻿using FootballLeague.BL.IRepositories;
+using FootballLeague.DA;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -10,20 +11,20 @@ namespace FootballLeague.BL
 {
     public class CountryService
     {
-        private CountryRepository countryRepo;
-        public CountryService(CountryRepository countryRepo)
+        private ICountryRepository countryRepo;
+        public CountryService(ICountryRepository countryRepo)
         {
             this.countryRepo = countryRepo;
         }
 
         public List<Country> getAllCountries()
         {
-            return countryRepo.getAllCountries();
+            return countryRepo.readAllCountries();
         }
 
         internal Country getCountryByName(string name)
         {
-            return countryRepo.getCountryByName(name);
+            return countryRepo.readbyName(name);
         }
     }
 }

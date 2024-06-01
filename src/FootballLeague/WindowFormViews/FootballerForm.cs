@@ -33,11 +33,10 @@ namespace FootballLeague.WindowFormViews
             dgvFootballer.DataSource = allFootballer;
         }
 
-        private void dgvFootballer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvFootballer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int idFootballer = (int)dgvFootballer.CurrentRow.Cells[0].Value;
-            dynamic allRequestOfFootballer = requestService.getAllRequestOfFootballer(idFootballer);
-            dgvRequest.DataSource = allRequestOfFootballer;
+            dgvRequest.DataSource = requestService.getAllRequestOfFootballer(idFootballer); ;
         }
     }
 }

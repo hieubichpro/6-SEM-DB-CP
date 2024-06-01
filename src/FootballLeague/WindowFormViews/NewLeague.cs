@@ -14,18 +14,19 @@ namespace FootballLeague.WindowFormViews
 {
     public partial class NewLeague : Form
     {
-        private string username;
+        private User user;
         private UserService userService;
         private LeagueService leagueService;
         private CountryService countryService;
-        public NewLeague(string username, UserService userService, LeagueService leagueService, CountryService countryService)
+        private FeedbackService feedbackService;
+        public NewLeague(ref User user, UserService userService, LeagueService leagueService, CountryService countryService, FeedbackService feedbackService)
         {
             InitializeComponent();
-            this.username = username;
+            this.user = user;
             this.userService = userService;
             this.leagueService = leagueService;
             this.countryService = countryService;
-
+            this.feedbackService = feedbackService;
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -49,19 +50,34 @@ namespace FootballLeague.WindowFormViews
 
         private void fillNameCreator()
         {
-            User currUser = userService.getUserByUsername(username);
-            textBoxCreator.Text = currUser.FirstName + " " + currUser.LastName;
+            textBoxCreator.Text = user.FirstName + " " + user.LastName;
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            User currUser = userService.getUserByUsername(username);
+            if (cbbCountry.Text == "" || textBoxName.Text == "" || textBoxRating.Text == "")
+            {
+                MessageBox.Show("Fields blank");
+                return;
+            }
             Country currCountry = countryService.getCountryByName(cbbCountry.SelectedItem.ToString());
-            leagueService.insertLeague(textBoxName.Text, textBoxRating.Text, currUser.Id, currCountry.Id);
+            leagueService.insertLeague(textBoxName.Text, Convert.ToDouble(textBoxRating.Text), user.Id, currCountry.Id);
 
-            dynamic allLeagueAfterInsert = leagueService.getAllLeagueInfo();
-            LeagueForm.dgvLeague.DataSource = allLeagueAfterInsert;
+            if (MyLeagueForm.dgvMyLeague != null)
+                MyLeagueForm.dgvMyLeague.DataSource = leagueService.getAllLeagueByIDUser(user.Id);
+
             MessageBox.Show("League have been created successfully");
+            this.Close();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            textBoxName.Text = "";
+            textBoxRating.Text = "";
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }

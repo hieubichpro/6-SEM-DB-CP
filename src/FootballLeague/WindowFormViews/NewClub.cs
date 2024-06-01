@@ -14,32 +14,31 @@ namespace FootballLeague.WindowFormViews
 {
     public partial class NewClub : Form
     {
-        string username;
+        User user;
         UserService userService;
         ClubService clubService;
         CountryService countryService;
-        public NewClub(string username, UserService userService, ClubService clubService, CountryService countryService)
+        FeedbackService feedbackService;
+        public NewClub(ref User user, UserService userService, ClubService clubService, CountryService countryService, FeedbackService feedbackService)
         {
             InitializeComponent();
-            this.username = username;
+            this.user = user;
             this.userService = userService;
             this.clubService = clubService;
             this.countryService = countryService;
+            this.feedbackService = feedbackService;
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
             string name = textBoxName.Text;
-            User currUser = userService.getUserByUsername(username);
             Country currCountry = countryService.getCountryByName(cbbCountry.SelectedItem.ToString());
-            clubService.insertClub(name, currUser.Id, currCountry.Id);
+            clubService.insertClub(name, currCountry.Id);
 
             int idClub = clubService.getIdClubByName(name);
 
-            userService.updateIdClubOfUser(currUser.Id, idClub);
-
-            dynamic allClubAfterInsert = clubService.getAllClubAndInfo();
-            ClubForm.dgvClub.DataSource = allClubAfterInsert;
+            userService.updateIdClubOfUser(user.Id, idClub);
+            
             MessageBox.Show("Club have been created successfully");
             this.Close();
         }
@@ -61,8 +60,7 @@ namespace FootballLeague.WindowFormViews
 
         private void FillCreatorName()
         {
-            User curr = userService.getUserByUsername(username);
-            textBoxCreator.Text = curr.FirstName + " " + curr.LastName;
+            textBoxCreator.Text = user.FirstName + " " + user.LastName;
         }
     }
 }

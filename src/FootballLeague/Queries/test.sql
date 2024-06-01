@@ -1,176 +1,169 @@
-insert into users values
-(1, 'hieu', '1', 'footballer');
-
-insert into users values
-(2, 'bich', '2', 'coach')
-
+select * from users where id_club = 9 and role = 'Coach'
 select * from users
+-- drop function get_table_league(id_ int);
 
-insert into users(login, password, role, firstname, lastname, age) values
-('hien', '3', 'footballer', '', '', 25);
-
-select * from users where login = 'hieu'
-
-select * from leagues
-
-select * from countries
-
-insert into countries(name, continent) values
-('Spain', 'Europe'),
-('England', 'Europe'),
-('Vietnam', 'Asia'),
-('USA', 'America');
-insert into countries(name, continent) values
-('Russia', 'Europe');
-select * from countries
-
-select * from leagues
-
-select * from clubs
-
-select * from users
-
-select cl.id, cl.name, u.firstname, u.lastname, c.name from clubs cl join users u on cl.id_user = u.id
-			join countries c on cl.id_country = c.id;
-			
-alter table leagues drop column id_country
-select * from leagues
-
-select * from clubs
-alter table clubs drop column id_user
-
-select * from clubs
-
-select * from users
-select * from clubs
-
-select * from userclub
-
-insert into userclub(id_user, id_club)
-values
-(2, 1),
-(3, 2),
-(2, 3),
-(1, 4),
-(1, 5)
-
-select c.id, c.name as Name_Club, u.firstname || ' ' || u.lastname as Creator, ct.name
-from clubs c join userclub uc on c.id = uc.id_club
-join users u on uc.id_user = u.id
-join countries ct on c.id_country = ct.id;
-
-select * from clubs;
-
-select id from clubs where name = 'HCMCity'
-
-select * from userclub
-
-select * from users
-
-delete from clubs where name = 'bk'
-
-select distinct u.firstname || ' ' || u.lastname as fullname, c.name
-from users u join userclub uc on u.id = uc.id_user
-join clubs c on uc.id_club = c.id
-where role = 'Footballer';
-
-
-select * from users
-
-select * from countries
-
-insert into countries(name, continent) values
-('Spain', 'Europe'),
-('England', 'Europe'),
-('Vietnam', 'Asia'),
-('USA', 'America');
-
-delete from clubs where id = 2
-
-select * from clubs
-select * from users
-select c.id, c.name as Name_Club, u.firstname || ' ' || u.lastname as Creator, ct.name
-                          from clubs c
-                          join users u on u.id_club = c.id
-                          join countries ct on c.id_country = ct.id;
-						  
-update users set id_club = 3 where id = 5
-
-select u.firstname || ' ' || u.lastname as Fullname_Footballer, u.age, c.name as Name_Club
-from users u join clubs c
-on u.id_club = c.id
-where role = 'Footballer'
-
-select * from countries
-
-select * from stadiums
-
-insert into stadiums(name, capacity, id_country) values
-('Old Transford', 70000, 2),
-('Camp Nou', 75000, 1);
-
-select s.id, s.name, s.capacity, c.name as country
-from stadiums s join countries c on s.id_country = c.id
-
-select * from countries
-
-select * from requests
-
-select * from leagues
-
-alter table leagues add id_country int
-
-select l.id, l.name as League, l.rating, u.firstname || ' ' || u.lastname as Creator, c.name as Country
-from leagues l join users u on l.id_user = u.id
-join countries c on l.id_country = c.id
-
-select * from requests
-
-select * from users
-
-select * from clubs
-
-select * from leagueclub
-
-
-create table employee
-(
-	id serial not null primary key,
-	ida int not null,
-	idb int default -1,
-	idc int not null
+create or replace function get_table_league(id_ int)
+returns table(
+	name varchar,
+	allgames int,
+	games int,
+	wins int,
+	draws int,
+	loses int,
+	goals int,
+	losts int,
+	diff int,
+	points int
 )
+as
+$$
+begin
+	drop table if exists clubs_in_league;
+	create temp table if not exists clubs_in_league(id int, name varchar(64));
+	insert into clubs_in_league(id, name)
+	select c.id, c.name
+	from clubs c join leagueclub lc on c.id = lc.id_club
+	where lc.id_league = id_;
+	
+	drop table if exists home_count;
+	create temp table if not exists home_count(id int, notplayed int, played int, wins int, draws int, loses int, goals int, losts int);
+	insert into home_count(id, notplayed, played, wins, draws, loses, goals, losts)
+	select c.id,
+	sum(case when m.goal_home_club is null then 1 else 0 end),
+	sum(case when m.goal_home_club is not null then 1 else 0 end),
+	sum(case when m.goal_home_club > m.goal_guess_club then 1 else 0 end),
+	sum(case when m.goal_home_club = m.goal_guess_club then 1 else 0 end),
+	sum(case when m.goal_home_club < m.goal_guess_club then 1 else 0 end),
+	sum(case when m.goal_home_club is null then 0 else m.goal_home_club end),
+	sum(case when m.goal_guess_club is null then 0 else m.goal_guess_club end)
+	from clubs_in_league c join matches m on c.id = m.id_home_club
+	where m.id_league = id_
+	group by c.id;
+	
+	drop table if exists guest_count;
+	create temp table if not exists guest_count(id int, notplayed int, played int, wins int, draws int, loses int, goals int, losts int);
+	insert into guest_count(id, notplayed, played, wins, draws, loses, goals, losts)
+	select c.id,
+	sum(case when m.goal_home_club is null then 1 else 0 end),
+	sum(case when m.goal_home_club is not null then 1 else 0 end),
+	sum(case when m.goal_home_club < m.goal_guess_club then 1 else 0 end),
+	sum(case when m.goal_home_club = m.goal_guess_club then 1 else 0 end),
+	sum(case when m.goal_home_club > m.goal_guess_club then 1 else 0 end),
+	sum(case when m.goal_home_club is null then 0 else m.goal_guess_club end),
+	sum(case when m.goal_guess_club is null then 0 else m.goal_home_club end)
+	from clubs_in_league c join matches m on c.id = m.id_guess_club
+	where m.id_league = id_
+	group by c.id;
+	
+	drop table if exists summary;
+	create table if not exists summary(name varchar(64), all_games int, games int, wins int, draws int, loses int, goals int, losts int, diff int, points int);
+	insert into summary(name, all_games, games, wins, draws, loses, goals, losts, diff, points)
+	select c.name,
+	h.notplayed + g.notplayed + h.played + g.played,
+	h.played + g.played, 
+	h.wins + g.wins, 
+	h.draws + g.draws, 
+	h.loses + g.loses, 
+	h.goals + g.goals, 
+	h.losts + g.losts, 
+	h.goals + g.goals - h.losts - g.losts, 
+	(h.wins + g.wins) * 3 + (h.draws + g.draws)
+	from clubs_in_league c join home_count h on c.id = h.id
+	join guest_count g on c.id = g.id;
+	
+	return query
+	select s.name, s.all_games, s.games, s.wins, s.draws, s.loses, s.goals, s.losts, s.diff, s.points
+	from summary s
+	order by s.points desc, s.diff desc, s.wins desc, s.name;
+	
+end
+$$
+language plpgsql;
 
-insert into employee(ida, idc) values (2, 3);
+select * from get_table_league(5);
 
-select * from employee
+delete from matches where id_league = 5
+select * from clubs
+select * from leagueclub where id_league = 5
+select * from matches order by week
 
-drop table employee
+delete from matches where id_league = 5;
+select * from matches order by week
 
-select r.id, r.created_time, u.firstname || ' ' || u.lastname as Footballer
-from (select * from clubs where id = 3) c join requests r on r.id_club = c.id
-join users u on r.id_user = u.id
-where id_league = 1;
+select * from home_count
+select * from guest_count
+select * from clubs where id = 6
 
+select * from matches
+update matches set goal_home_club = floor(random() * 10 + 1)::int, goal_guess_club = floor(random() * 10 + 1)::int where id = 219;
+select * from matches where id = 219
 
-select r.id, r.created_time, u.firstname || ' ' || u.lastname as Footballer
-from clubs c join requests r on r.id_club = c.id
-join users u on r.id_user = u.id
-where id_league = 1 and c.id = 3
+create or replace procedure auto_fill(id_ int)
+language plpgsql
+as
+$$
+declare
+	row record;
+begin
+	for row in select * from matches where id_league = id_
+	loop
+		update matches set goal_home_club = floor(random() * 10 + 1)::int, goal_guess_club = floor(random() * 10 + 1)::int where id = row.id;
+	end loop;
+end;
+$$
 
+call auto_fill(5);
 
-select * from requests
-select now()
-update requests set created_time = now()
-where id = 2
+select * from matches
 
+create or replace function calculate_rating()
+returns trigger
+as
+$$
+begin
+	update leagues set rating = (select sum(f.grade) / count(*)::double precision as rating
+								 from feedbacks f
+								 where id_league = new.id_league)
+	where id = new.id_league;
+	return new;
+end;
+$$
+language plpgsql;
 
-insert into requests(id_league, id_club, id_user) values (1, 1, 1);
+create trigger auto_cal_rating
+after insert on feedbacks
+for each row execute function calculate_rating();
 
-delete from requests where id = 5
+create or replace function insert_feedback()
+returns trigger
+as
+$$
+begin
+	insert into feedbacks(grade, id_user, id_league) values (5, new.id_user, new.id);
+	return new;
+end;
+$$
+language plpgsql;
 
-select * from users
+create trigger auto_insert
+after insert on leagues
+for each row execute function insert_feedback();
 
-select u.id, u.firstname as FirstName, u.lastname as LastName, u.age as Age
-from clubs c join users u on u.id_club = c.id
-where u.role = 'Footballer'
+create or replace function delete_requests()
+returns trigger
+as
+$$
+begin
+	delete from requests where id_user = new.id;
+	return new;
+end;
+$$
+language plpgsql;
+
+create trigger auto_del_requests
+after update on users
+for each row execute function delete_requests();
+
+select * from leagues where id = 12
+select * from users where id = 17
+select * from users where login = 'cr7'

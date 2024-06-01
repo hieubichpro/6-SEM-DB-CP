@@ -13,7 +13,7 @@ namespace WindowFormViews
 {
     public partial class SplashForm : Form
     {
-        private readonly UserService userService;
+        private UserService userService;
         private LeagueService leagueService;
         private CountryService countryService;
         private ClubService clubService;
@@ -38,7 +38,7 @@ namespace WindowFormViews
         {
             if (processBar.Value < 100)
             {
-                processBar.Value += 50;
+                processBar.Value += 5;
                 percent.Text = processBar.Value.ToString() + "%";
             }
             else

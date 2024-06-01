@@ -32,6 +32,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Guna.UI2">
       <HintPath>..\..\Guna.UI2_x86\Guna.UI2.dll</HintPath>
@@ -102,14 +106,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BL\RequestService.cs" />
-    <Compile Include="BL\ClubService.cs" />
-    <Compile Include="BL\CountryService.cs" />
-    <Compile Include="BL\FeedbackService.cs" />
-    <Compile Include="BL\LeagueService.cs" />
-    <Compile Include="BL\MatchService.cs" />
-    <Compile Include="BL\StadiumService.cs" />
-    <Compile Include="BL\UserService.cs" />
+    <Compile Include="BL\IRepositories\IClubRepository.cs" />
+    <Compile Include="BL\IRepositories\ICountryRepository.cs" />
+    <Compile Include="BL\IRepositories\IFeedbackRepository.cs" />
+    <Compile Include="BL\IRepositories\ILeagueRepository.cs" />
+    <Compile Include="BL\IRepositories\IMatchRepository.cs" />
+    <Compile Include="BL\IRepositories\IRequestRepository.cs" />
+    <Compile Include="BL\IRepositories\IStadiumRepository.cs" />
+    <Compile Include="BL\IRepositories\IUserRepository.cs" />
+    <Compile Include="BL\Services\RequestService.cs" />
+    <Compile Include="BL\Services\ClubService.cs" />
+    <Compile Include="BL\Services\CountryService.cs" />
+    <Compile Include="BL\Services\FeedbackService.cs" />
+    <Compile Include="BL\Services\LeagueService.cs" />
+    <Compile Include="BL\Services\MatchService.cs" />
+    <Compile Include="BL\Services\StadiumService.cs" />
+    <Compile Include="BL\Services\UserService.cs" />
     <Compile Include="DA\RequestRepository.cs" />
     <Compile Include="DA\ClubRepository.cs" />
     <Compile Include="DA\Connection.cs" />
@@ -119,7 +131,13 @@
     <Compile Include="DA\MatchRepository.cs" />
     <Compile Include="DA\StadiumRepository.cs" />
     <Compile Include="DA\UserRepository.cs" />
-    <Compile Include="Models\ClubLeague.cs" />
+    <Compile Include="BL\Models\ClubLeague.cs" />
+    <Compile Include="WindowFormViews\AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowFormViews\AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowFormViews\ChangePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +186,12 @@
     <Compile Include="WindowFormViews\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowFormViews\MatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowFormViews\MatchForm.Designer.cs">
+      <DependentUpon>MatchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowFormViews\MyClubForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,20 +234,26 @@
     <Compile Include="WindowFormViews\RequestOfClub.Designer.cs">
       <DependentUpon>RequestOfClub.cs</DependentUpon>
     </Compile>
+    <Compile Include="WindowFormViews\ScoreMatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WindowFormViews\ScoreMatchForm.Designer.cs">
+      <DependentUpon>ScoreMatchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WindowFormViews\SplashForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WindowFormViews\SplashForm.Designer.cs">
       <DependentUpon>SplashForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Request.cs" />
-    <Compile Include="Models\Club.cs" />
-    <Compile Include="Models\Country.cs" />
-    <Compile Include="Models\League.cs" />
-    <Compile Include="Models\Match.cs" />
-    <Compile Include="Models\Feedback.cs" />
-    <Compile Include="Models\Stadium.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="BL\Models\Request.cs" />
+    <Compile Include="BL\Models\Club.cs" />
+    <Compile Include="BL\Models\Country.cs" />
+    <Compile Include="BL\Models\League.cs" />
+    <Compile Include="BL\Models\Match.cs" />
+    <Compile Include="BL\Models\Feedback.cs" />
+    <Compile Include="BL\Models\Stadium.cs" />
+    <Compile Include="BL\Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindowFormViews\StadiumForm.cs">
@@ -241,6 +271,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="WindowFormViews\AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WindowFormViews\ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -265,6 +298,9 @@
     <EmbeddedResource Include="WindowFormViews\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WindowFormViews\MatchForm.resx">
+      <DependentUpon>MatchForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WindowFormViews\MyClubForm.resx">
       <DependentUpon>MyClubForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -285,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WindowFormViews\RequestOfClub.resx">
       <DependentUpon>RequestOfClub.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowFormViews\ScoreMatchForm.resx">
+      <DependentUpon>ScoreMatchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WindowFormViews\SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>
@@ -307,9 +346,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Models\" />
     <Folder Include="Queries\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Goal_icon-icons.com_62267.ico" />
     <Content Include="Images\logo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

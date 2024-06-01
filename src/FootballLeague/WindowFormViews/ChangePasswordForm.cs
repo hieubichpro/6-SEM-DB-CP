@@ -1,4 +1,5 @@
 ﻿using FootballLeague.BL;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,27 +15,34 @@ namespace FootballLeague.WindowFormViews
     public partial class ChangePasswordForm : Form
     {
         private UserService userService;
-        private string username;
-        public ChangePasswordForm(string username, UserService userService)
+        private User user;
+        public ChangePasswordForm(ref User user, UserService userService)
         {
             InitializeComponent();
             this.userService = userService;
-            this.username = username;
+            this.user = user;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            string password = textBoxOldPassword.Text;
             string newPassword = textBoxNewPassword.Text;
             string reEnterPassword = textBoxReEnterPassword.Text;
-            if (string.Compare(newPassword, reEnterPassword) == 0)
-            {
-                userService.ChangePassword(username, newPassword);
-                MessageBox.Show("Change successfully");
-                this.Close();
-            }
+            if (password == "" || newPassword == "" || reEnterPassword == "")
+                MessageBox.Show("Field blank must be fill");
             else
             {
-                MessageBox.Show("New password and re-enter dont match");
+
+                if (string.Compare(user.Password, password) == 0 && string.Compare(newPassword, reEnterPassword) == 0)
+                {
+                    userService.ChangePassword(user, newPassword);
+                    MessageBox.Show("Change successfully");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Old Password uncorrected or New password and re-enter dont match");
+                }
             }
         }
 

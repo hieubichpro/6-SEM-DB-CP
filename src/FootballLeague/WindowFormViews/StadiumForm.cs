@@ -14,32 +14,23 @@ namespace FootballLeague.WindowFormViews
 {
     public partial class StadiumForm : Form
     {
-        private string username;
+        private User user;
         private StadiumService stadiumService;
         private CountryService countryService;
         private UserService userService;
-        public StadiumForm(string username, StadiumService stadiumService, CountryService countryService, UserService userService)
+        public StadiumForm(ref User user, StadiumService stadiumService, CountryService countryService, UserService userService)
         {
             InitializeComponent();
-            this.username = username;
+            this.user = user;
             this.stadiumService = stadiumService;
             this.countryService = countryService;
             this.userService = userService;
         }
-
-        public string Username { get => username; set => username = value; }
-        public StadiumService StadiumService { get => stadiumService; set => stadiumService = value; }
-        public CountryService CountryService { get => countryService; set => countryService = value; }
-
         private void StadiumForm_Load(object sender, EventArgs e)
         {
             showAllStadium();
             FillCountryCbb();
-            string role = "";
-            if (username != "Guest")
-            {
-                role = userService.getUserByUsername(username).Role;
-            }
+            string role = user.Role;
             if (role == "Admin")
             {
                 EnabledPanelContents(mypanel, true);
@@ -52,8 +43,7 @@ namespace FootballLeague.WindowFormViews
 
         private void showAllStadium()
         {
-            dynamic allStadium = stadiumService.getAllStadiumInfo();
-            dgvStadium.DataSource = allStadium;
+            dgvStadium.DataSource = stadiumService.getAllStadiumAndInfo();
         }
 
         private void FillCountryCbb()
@@ -69,16 +59,30 @@ namespace FootballLeague.WindowFormViews
         {
             string name = textBoxName.Text;
             string capacity = textBoxCapacity.Text;
-            string nameCountry = cbbCountry.SelectedItem.ToString();
+            string nameCountry = "";
+            if (cbbCountry.SelectedItem == null || name == "" || capacity == "")
+                MessageBox.Show("Blank field");
+            else
+            {
+                nameCountry = cbbCountry.SelectedItem.ToString();
 
-            Country currCountry = countryService.getCountryByName(nameCountry);
-            stadiumService.insertStadium(name, capacity, currCountry.Id);
+
+                Country currCountry = countryService.getCountryByName(nameCountry);
+                stadiumService.insertStadium(name, capacity, currCountry.Id);
+                MessageBox.Show("Add sucessfully");
+            }
+            deleteAllTextBox();
 
             // update dgvStadium
             showAllStadium();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
+        {
+            deleteAllTextBox();
+        }
+
+        public void deleteAllTextBox()
         {
             textBoxName.Clear();
             textBoxCapacity.Clear();
@@ -111,6 +115,21 @@ namespace FootballLeague.WindowFormViews
             {
                 ctrl.Enabled = enabled;
             }
+        }
+
+        private void dgvStadium_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvStadium.CurrentRow.Selected = true;
+            textBoxName.Text = dgvStadium.Rows[e.RowIndex].Cells[1].Value.ToString();
+            textBoxCapacity.Text = dgvStadium.Rows[e.RowIndex].Cells[2].Value.ToString();
+            cbbCountry.Text = dgvStadium.Rows[e.RowIndex].Cells[3].Value.ToString();
+        }
+
+        private void btnModify_Click(object sender, EventArgs e)
+        {
+            int id = (int)dgvStadium.CurrentRow.Cells[0].Value;
+            stadiumService.modifyStadium(id, textBoxName.Text, textBoxCapacity.Text, cbbCountry.Text);
+            showAllStadium();
         }
     }
 }

@@ -14,55 +14,83 @@ namespace FootballLeague.WindowFormViews
 {
     public partial class LeagueForm : Form
     {
-        private string username;
+        private User user;
         private UserService userService;
         private LeagueService leagueService;
         private CountryService countryService;
         private RequestService requestService;
         private ClubService clubService;
-        public LeagueForm(string username, UserService userService, LeagueService leagueService, CountryService countryService, RequestService requestService, ClubService clubService)
+        private FeedbackService feedbackService;
+        public LeagueForm(ref User user, UserService userService, LeagueService leagueService, CountryService countryService, RequestService requestService, ClubService clubService, FeedbackService feedbackService)
         {
             InitializeComponent();
-            this.username = username;
+            this.user = user;
             this.userService = userService;
             this.leagueService = leagueService;
             this.countryService = countryService;
             this.requestService = requestService;
             this.clubService = clubService;
+            this.feedbackService = feedbackService;
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            NewLeague nl = new NewLeague(username, userService, leagueService, countryService);
+            NewLeague nl = new NewLeague(ref user, userService, leagueService, countryService, feedbackService);
             nl.ShowDialog();
         }
 
         private void LeagueForm_Load(object sender, EventArgs e)
         {
             showAllLeagueInfo();
+            if (user.Role != "Coach")
+            {
+                btnRequest.Visible = false;
+            }
         }
 
         private void showAllLeagueInfo()
         {
-            dynamic allLeagues = leagueService.getAllLeagueInfo();
-            dgvLeague.DataSource = allLeagues;
+            dgvLeague.DataSource = leagueService.getAllLeagueInfo();
         }
 
         private void btnRequest_Click(object sender, EventArgs e)
         {
-            User currUser = userService.getUserByUsername(username);
-            int id_club = currUser.IdClub;
-            int id_user = currUser.Id;
             int id_league = (int)dgvLeague.CurrentRow.Cells[0].Value;
-            requestService.insertRequestToLeague(id_league, id_club, id_user);
+            if (leagueService.hasStarted(id_league))
+            {
+                MessageBox.Show("This league has been started");
+            }
+            else
+            {
+                int id_club = user.IdClub;
+                int id_user = user.Id;
 
-            MessageBox.Show("Request to club successfully");
+                requestService.insertRequestToLeague(id_league, id_club, id_user);
+
+                MessageBox.Show("Request to club successfully");
+            }
         }
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            RequestOfLeague rol = new RequestOfLeague(username, userService, requestService, clubService, leagueService);
+            RequestOfLeague rol = new RequestOfLeague(ref user, userService, requestService, clubService, leagueService);
             rol.ShowDialog();
+        }
+
+        private void dgvLeague_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvLeague.CurrentRow.Cells[0].Value == null || dgvLeague.CurrentRow.Cells[0].Value == DBNull.Value)
+                return;
+            int id_league = (int)dgvLeague.CurrentRow.Cells[0].Value;
+            dgvTable.DataSource = leagueService.getTableLeague(id_league);
+        }
+
+        private void btnRating_Click(object sender, EventArgs e)
+        {
+            int id_league = (int)dgvLeague.CurrentRow.Cells[0].Value;
+            int grade = Int32.Parse(cbbRating.Text);
+            feedbackService.insertFeedback(grade, user.Id, id_league);
+            showAllLeagueInfo();
         }
     }
 }

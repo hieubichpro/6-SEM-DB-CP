@@ -1,4 +1,6 @@
-﻿using Npgsql;
+﻿using FootballLeague.BL.IRepositories;
+using Models;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +9,13 @@ using System.Threading.Tasks;
 
 namespace FootballLeague.DA
 {
-    public class FeedbackRepository
+    public class FeedbackRepository : IFeedbackRepository
     {
-        private NpgsqlConnection connector;
-
-        public NpgsqlConnection Connector { get => connector; set => connector = value; }
-        public FeedbackRepository(ConnectionArguments args)
+        public void create(Feedback feedback)
         {
-            this.connector = new NpgsqlConnection(args.getStringConnection());
-            this.connector.Open();
+            string query = "insert into feedbacks(grade, id_user, id_league) values"
+                          + " (" + feedback.Grade + ", " + feedback.IdUser + ", " + feedback.IdLeague + ");";
+            DataProvider.Instance.ExecuteNonQuery(query);
         }
     }
 }

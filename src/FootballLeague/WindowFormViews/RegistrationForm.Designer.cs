@@ -278,7 +278,7 @@ namespace WindowFormViews
             this.comboboxRole.Items.AddRange(new object[] {
             "Footballer",
             "Coach",
-            "Refeere"});
+            "Referee"});
             this.comboboxRole.Location = new System.Drawing.Point(196, 225);
             this.comboboxRole.Margin = new System.Windows.Forms.Padding(0);
             this.comboboxRole.Name = "comboboxRole";

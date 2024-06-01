@@ -34,10 +34,8 @@ namespace FootballLeague.WindowFormViews
             this.label1 = new System.Windows.Forms.Label();
             this.guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
             dgvFootballerinClub = new System.Windows.Forms.DataGridView();
-            this.btnShow = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnRequest = new System.Windows.Forms.Button();
-            this.btnCreate = new System.Windows.Forms.Button();
             dgvClub = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(dgvFootballerinClub)).BeginInit();
@@ -93,33 +91,16 @@ namespace FootballLeague.WindowFormViews
             // 
             dgvFootballerinClub.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dgvFootballerinClub.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFootballerinClub.Location = new System.Drawing.Point(311, 107);
+            dgvFootballerinClub.Location = new System.Drawing.Point(314, 107);
             dgvFootballerinClub.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             dgvFootballerinClub.Name = "dgvFootballerinClub";
-            dgvFootballerinClub.Size = new System.Drawing.Size(512, 361);
+            dgvFootballerinClub.Size = new System.Drawing.Size(509, 361);
             dgvFootballerinClub.TabIndex = 5;
-            // 
-            // btnShow
-            // 
-            this.btnShow.BackColor = System.Drawing.Color.DarkGreen;
-            this.btnShow.FlatAppearance.BorderSize = 0;
-            this.btnShow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShow.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShow.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnShow.Location = new System.Drawing.Point(440, 10);
-            this.btnShow.Name = "btnShow";
-            this.btnShow.Size = new System.Drawing.Size(185, 34);
-            this.btnShow.TabIndex = 4;
-            this.btnShow.Text = "SHOW APPLICATIONS";
-            this.btnShow.UseVisualStyleBackColor = false;
-            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel2.Controls.Add(this.btnRequest);
-            this.panel2.Controls.Add(this.btnCreate);
-            this.panel2.Controls.Add(this.btnShow);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 518);
             this.panel2.Name = "panel2";
@@ -133,28 +114,13 @@ namespace FootballLeague.WindowFormViews
             this.btnRequest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRequest.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRequest.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnRequest.Location = new System.Drawing.Point(311, 10);
+            this.btnRequest.Location = new System.Drawing.Point(37, 10);
             this.btnRequest.Name = "btnRequest";
             this.btnRequest.Size = new System.Drawing.Size(89, 34);
             this.btnRequest.TabIndex = 7;
             this.btnRequest.Text = "REQUEST";
             this.btnRequest.UseVisualStyleBackColor = false;
             this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
-            // 
-            // btnCreate
-            // 
-            this.btnCreate.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnCreate.FlatAppearance.BorderSize = 0;
-            this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreate.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreate.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnCreate.Location = new System.Drawing.Point(200, 10);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(75, 34);
-            this.btnCreate.TabIndex = 6;
-            this.btnCreate.Text = "CREATE";
-            this.btnCreate.UseVisualStyleBackColor = false;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // dgvClub
             // 
@@ -195,11 +161,9 @@ namespace FootballLeague.WindowFormViews
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
-        public static System.Windows.Forms.DataGridView dgvFootballerinClub;
-        private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnRequest;
+        public static System.Windows.Forms.DataGridView dgvFootballerinClub;
         public static System.Windows.Forms.DataGridView dgvClub;
     }
 }

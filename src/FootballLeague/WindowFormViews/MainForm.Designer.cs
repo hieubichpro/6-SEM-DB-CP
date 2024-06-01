@@ -52,6 +52,8 @@ namespace WindowFormViews
             this.labelTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel_main = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnMyClub = new System.Windows.Forms.Button();
             this.btnMyLeague = new System.Windows.Forms.Button();
@@ -71,12 +73,13 @@ namespace WindowFormViews
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1626, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1456, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -106,8 +109,9 @@ namespace WindowFormViews
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.aboutToolStripMenuItem.Text = "Admin";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // labelRole
             // 
@@ -130,7 +134,7 @@ namespace WindowFormViews
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 89);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1363, 824);
+            this.pictureBox1.Size = new System.Drawing.Size(1287, 554);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
@@ -140,7 +144,7 @@ namespace WindowFormViews
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(266, 169);
+            this.pictureBox2.Size = new System.Drawing.Size(173, 151);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 15;
             this.pictureBox2.TabStop = false;
@@ -157,7 +161,7 @@ namespace WindowFormViews
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 24);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(263, 941);
+            this.panel2.Size = new System.Drawing.Size(173, 662);
             this.panel2.TabIndex = 17;
             // 
             // btnStadium
@@ -165,11 +169,11 @@ namespace WindowFormViews
             this.btnStadium.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnStadium.FlatAppearance.BorderSize = 0;
             this.btnStadium.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStadium.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStadium.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.btnStadium.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnStadium.Location = new System.Drawing.Point(0, 440);
+            this.btnStadium.Location = new System.Drawing.Point(-41, 526);
             this.btnStadium.Name = "btnStadium";
-            this.btnStadium.Size = new System.Drawing.Size(263, 43);
+            this.btnStadium.Size = new System.Drawing.Size(263, 74);
             this.btnStadium.TabIndex = 4;
             this.btnStadium.Text = "Stadium";
             this.btnStadium.UseVisualStyleBackColor = false;
@@ -180,11 +184,11 @@ namespace WindowFormViews
             this.btnFootballer.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnFootballer.FlatAppearance.BorderSize = 0;
             this.btnFootballer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFootballer.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFootballer.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.btnFootballer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnFootballer.Location = new System.Drawing.Point(0, 373);
+            this.btnFootballer.Location = new System.Drawing.Point(-41, 446);
             this.btnFootballer.Name = "btnFootballer";
-            this.btnFootballer.Size = new System.Drawing.Size(263, 47);
+            this.btnFootballer.Size = new System.Drawing.Size(263, 74);
             this.btnFootballer.TabIndex = 3;
             this.btnFootballer.Text = "Footballer";
             this.btnFootballer.UseVisualStyleBackColor = false;
@@ -195,11 +199,11 @@ namespace WindowFormViews
             this.btnCoach.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnCoach.FlatAppearance.BorderSize = 0;
             this.btnCoach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCoach.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCoach.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.btnCoach.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCoach.Location = new System.Drawing.Point(0, 325);
+            this.btnCoach.Location = new System.Drawing.Point(-41, 366);
             this.btnCoach.Name = "btnCoach";
-            this.btnCoach.Size = new System.Drawing.Size(263, 42);
+            this.btnCoach.Size = new System.Drawing.Size(263, 74);
             this.btnCoach.TabIndex = 2;
             this.btnCoach.Text = "Coach";
             this.btnCoach.UseVisualStyleBackColor = false;
@@ -210,11 +214,11 @@ namespace WindowFormViews
             this.btnClub.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnClub.FlatAppearance.BorderSize = 0;
             this.btnClub.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClub.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClub.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
             this.btnClub.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnClub.Location = new System.Drawing.Point(3, 268);
+            this.btnClub.Location = new System.Drawing.Point(-41, 268);
             this.btnClub.Name = "btnClub";
-            this.btnClub.Size = new System.Drawing.Size(263, 42);
+            this.btnClub.Size = new System.Drawing.Size(263, 74);
             this.btnClub.TabIndex = 1;
             this.btnClub.Text = "Club";
             this.btnClub.UseVisualStyleBackColor = false;
@@ -225,11 +229,11 @@ namespace WindowFormViews
             this.btnLeague.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnLeague.FlatAppearance.BorderSize = 0;
             this.btnLeague.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLeague.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeague.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLeague.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLeague.Location = new System.Drawing.Point(0, 210);
+            this.btnLeague.Location = new System.Drawing.Point(-41, 188);
             this.btnLeague.Name = "btnLeague";
-            this.btnLeague.Size = new System.Drawing.Size(263, 42);
+            this.btnLeague.Size = new System.Drawing.Size(263, 74);
             this.btnLeague.TabIndex = 0;
             this.btnLeague.Text = "League";
             this.btnLeague.UseVisualStyleBackColor = false;
@@ -239,16 +243,16 @@ namespace WindowFormViews
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Highlight;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(263, 913);
+            this.panel3.Location = new System.Drawing.Point(173, 634);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1363, 52);
+            this.panel3.Size = new System.Drawing.Size(1283, 52);
             this.panel3.TabIndex = 18;
             // 
             // pictureBox3
             // 
             this.pictureBox3.BackColor = System.Drawing.SystemColors.Highlight;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(1269, 17);
+            this.pictureBox3.Location = new System.Drawing.Point(1138, 12);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(41, 46);
             this.pictureBox3.TabIndex = 2;
@@ -260,7 +264,7 @@ namespace WindowFormViews
             this.labelDate.AutoSize = true;
             this.labelDate.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDate.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelDate.Location = new System.Drawing.Point(1107, 41);
+            this.labelDate.Location = new System.Drawing.Point(957, 37);
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(40, 17);
             this.labelDate.TabIndex = 1;
@@ -272,11 +276,12 @@ namespace WindowFormViews
             this.labelTime.AutoSize = true;
             this.labelTime.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTime.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelTime.Location = new System.Drawing.Point(1107, 17);
+            this.labelTime.Location = new System.Drawing.Point(957, 12);
             this.labelTime.Name = "labelTime";
             this.labelTime.Size = new System.Drawing.Size(37, 17);
             this.labelTime.TabIndex = 0;
             this.labelTime.Text = "Time";
+            this.labelTime.Click += new System.EventHandler(this.labelTime_Click);
             // 
             // timer1
             // 
@@ -285,12 +290,31 @@ namespace WindowFormViews
             // 
             // panel_main
             // 
+            this.panel_main.Controls.Add(this.panel5);
+            this.panel_main.Controls.Add(this.panel4);
             this.panel_main.Controls.Add(this.panel1);
             this.panel_main.Controls.Add(this.pictureBox1);
-            this.panel_main.Location = new System.Drawing.Point(263, 0);
+            this.panel_main.Location = new System.Drawing.Point(173, 0);
             this.panel_main.Name = "panel_main";
-            this.panel_main.Size = new System.Drawing.Size(1363, 913);
+            this.panel_main.Size = new System.Drawing.Size(1290, 913);
             this.panel_main.TabIndex = 19;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 640);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1290, 173);
+            this.panel5.TabIndex = 18;
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 813);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1290, 100);
+            this.panel4.TabIndex = 17;
             // 
             // panel1
             // 
@@ -308,7 +332,7 @@ namespace WindowFormViews
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1363, 92);
+            this.panel1.Size = new System.Drawing.Size(1290, 92);
             this.panel1.TabIndex = 16;
             // 
             // btnMyClub
@@ -323,6 +347,7 @@ namespace WindowFormViews
             this.btnMyClub.TabIndex = 17;
             this.btnMyClub.Text = "My Club";
             this.btnMyClub.UseVisualStyleBackColor = false;
+            this.btnMyClub.Click += new System.EventHandler(this.btnMyClub_Click);
             // 
             // btnMyLeague
             // 
@@ -336,6 +361,7 @@ namespace WindowFormViews
             this.btnMyLeague.TabIndex = 16;
             this.btnMyLeague.Text = "My League";
             this.btnMyLeague.UseVisualStyleBackColor = false;
+            this.btnMyLeague.Click += new System.EventHandler(this.btnMyLeague_Click);
             // 
             // btnLogout
             // 
@@ -393,7 +419,7 @@ namespace WindowFormViews
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1626, 965);
+            this.ClientSize = new System.Drawing.Size(1456, 686);
             this.Controls.Add(this.panel_main);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -450,5 +476,7 @@ namespace WindowFormViews
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Button btnMyClub;
         private System.Windows.Forms.Button btnMyLeague;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel4;
     }
 }

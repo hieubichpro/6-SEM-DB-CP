@@ -152,7 +152,7 @@ namespace WindowFormViews
             this.textboxUsername.AutoRoundedCorners = true;
             this.textboxUsername.BorderRadius = 17;
             this.textboxUsername.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textboxUsername.DefaultText = "hieu";
+            this.textboxUsername.DefaultText = "ref";
             this.textboxUsername.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.textboxUsername.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.textboxUsername.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));

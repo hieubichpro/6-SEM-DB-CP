@@ -6,7 +6,7 @@
         private string name;
         private string continent;
 
-        public Country(int id, string name, string continent)
+        public Country(string name, string continent, int id = 1)
         {
             this.id = id;
             this.name = name;

@@ -14,15 +14,15 @@ namespace FootballLeague.WindowFormViews
 {
     public partial class RequestOfLeague : Form
     {
-        private string username;
+        private User user;
         private UserService userService;
         private RequestService requestService;
         private ClubService clubService;
         private LeagueService leagueService;
-        public RequestOfLeague(string username, UserService userService, RequestService requestService, ClubService clubService, LeagueService leagueService)
+        public RequestOfLeague(ref User user, UserService userService, RequestService requestService, ClubService clubService, LeagueService leagueService)
         {
             InitializeComponent();
-            this.username = username;
+            this.user = user;
             this.userService = userService;
             this.requestService = requestService;
             this.clubService = clubService;
@@ -31,17 +31,21 @@ namespace FootballLeague.WindowFormViews
 
         private void btnReject_Click(object sender, EventArgs e)
         {
+            if (dgvRequest.SelectedRows.Count != 1)
+                return;
             int idRequest = (int)dgvRequest.CurrentRow.Cells[0].Value;
             requestService.deleteRequestByIdRequest(idRequest);
+            MessageBox.Show("Club have been rejected to League");
             showAllRequest();
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            int idLeague = (int)LeagueForm.dgvLeague.CurrentRow.Cells[0].Value;
+            int idLeague = (int)MyLeagueForm.dgvMyLeague.CurrentRow.Cells[0].Value;
+            //if (dgvRequest.SelectedRows.Count != 1)
+            //    return;
             int idClub = (int)dgvRequest.CurrentRow.Cells[2].Value;
-            User currUser = userService.getUserByUsername(username);
-            requestService.deleteRequestByIdUser(currUser.Id);
+            requestService.deleteRequestByIdClub(idClub);
             leagueService.insertIntoTableLeagueClub(idLeague, idClub);
             MessageBox.Show("Club have been joined to League");
             showAllRequest();
@@ -54,9 +58,8 @@ namespace FootballLeague.WindowFormViews
 
         private void showAllRequest()
         {
-            int idLeague = (int)LeagueForm.dgvLeague.CurrentRow.Cells[0].Value; //do LeagueForm.dgv static public
-            dynamic allInfo = requestService.getAllRequestToLeague(idLeague);
-            dgvRequest.DataSource = allInfo;
+            int idLeague = (int)MyLeagueForm.dgvMyLeague.CurrentRow.Cells[0].Value; //do LeagueForm.dgv static public
+            dgvRequest.DataSource = requestService.getAllRequestToLeague(idLeague);
         }
 
         private void btnExit_Click(object sender, EventArgs e)

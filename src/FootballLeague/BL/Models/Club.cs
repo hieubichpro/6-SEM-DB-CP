@@ -6,7 +6,7 @@
         private string name;
         private int idCountry;
 
-        public Club(int id, string name, int idUser, int idCountry)
+        public Club(string name, int idCountry, int id = 1)
         {
             this.Id = id;
             this.Name = name;
